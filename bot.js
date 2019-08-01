@@ -8,6 +8,7 @@ bot.on("ready", async => {
     bot.user.setActivity("hentai", {type: "WATCHING"});
     bot.generateInvite(["ADMINISTRATOR"]).then(link =>{
             console.log(link);
+            const invite = link;
         }).catch(err =>{
             console.log(err.stack);
         })
@@ -36,7 +37,7 @@ bot.on("message", async message => {
         .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
         .addField("ID", `${message.author.id}`)
         .addField("Created at", `${message.author.createdAt}`)
-        .setFooter("Cute Bot", bot.displayAvatarURL);
+        .setFooter("Cute Bot", bot.user.displayAvatarURL);
         message.channel.send(user_embed);
 
         return;
@@ -51,8 +52,8 @@ bot.on("message", async message => {
         .addField("Full Name", `${bot.username}#${bot.discriminator}`)
         .addField("Creator", "Cyntrap#8382")
         .addField("Created at", bot.createdAt)
-        .addField("Invite Link:", link)
-        .setFooter("Cute Bot", bot.displayAvatarURL);
+        .addField("Invite Link:", invite)
+        .setFooter("Cute Bot", bot.user.displayAvatarURL);
         message.channel.send(bot_embed)
 
         return;
