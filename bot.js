@@ -1,11 +1,28 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
+const prefix = '_';
 
-const { CommandHandler} = require("Cyntrap-Bot");
-const CH = new CommandHandler({
-    folder: __dirname + "/commands/",
-    prefix: ['_']
-})
+const fs = require("fs");
+
+bot.commands = new Discord.Collection();
+bot.aliases = new Discord.Collection();
+
+fs.readdir("./commands/", (err, files) =>{
+    if(err) console.log(err)
+
+    let jsfile = files.filter(f => f.split(".")).pop() === "js"
+    if(jsfile.length <= 0){
+        console.log("Coudn't find commands");
+    }
+
+    jsfile.forEach((f, i) => {
+        let pull = require("./commands/${f}")
+        bot.commands.set(pull.config.name, pull)
+        pull.config.aliases.forEach(aliases =>{
+            bot.aliases.set(alias, pull.config.name)
+        })
+    })
+});
 
 bot.on("ready", function(){
     console.log("Hentai Bot is online!!")
@@ -20,17 +37,14 @@ bot.on("message", function(message){
         message.channel.sendMessage("Hi ^-^");
     }
 
-    let args = message.content.split(" ");
-    let command = args[0];
-    let cmd = CH.getCommand(command);
-    if(!cmd) return;
+    let prefix = '_';
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
 
-    try{
-        cmd.run(bot, message, args);
-    }catch(e){
-        console.log(e)
-    }
+    let commandfile = bot.commands.get(cmd.slice(prefix.length)) || bot.commands.get(bot.aliases.get(cmd.slice(prefix.length)));
 
+    if (commandfile) commandfile.run(bot, message, args)
 
 })
 
