@@ -28,7 +28,7 @@ bot.on("message", async message => {
     if(!command.startsWith(prefix)) return;
 
     if(command === `${prefix}userinfo`){
-        let u_embed = new Discord.RichEmbed()
+        let user_embed = new Discord.RichEmbed()
         .setColor("PURPLE")
         .setAuthor(message.author.username)
         .setThumbnail(message.author.displayAvatarURL)
@@ -36,12 +36,14 @@ bot.on("message", async message => {
         .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
         .addField("ID", `${message.author.id}`)
         .addField("Created at", `${message.author.createdAt}`)
-        .addFooter("Cute Bot", bot.displayAvatarURL);
-        message.channel.send(u_embed);
+        .setFooter("Cute Bot", bot.displayAvatarURL);
+        message.channel.send(user_embed);
+
+        return;
     }
 
     if(command === `${prefix}botinfo`){
-        let b_embed = new Discord.RichEmbed()
+        let bot_embed = new Discord.RichEmbed()
         .setColor("PURPLE")
         .setAuthor(message.author.username)
         .setThumbnail(bot.displayAvatarURL)
@@ -50,9 +52,10 @@ bot.on("message", async message => {
         .addField("Creator", "Cyntrap#8382")
         .addField("Created at", bot.createdAt)
         .addField("Invite Link:", link)
-        .addFooter("Cute Bot", bot.displayAvatarURL);
-        message.channel.send(b_embed)
-        
+        .setFooter("Cute Bot", bot.displayAvatarURL);
+        message.channel.send(bot_embed)
+
+        return;
     }
 
     return;
