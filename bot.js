@@ -28,7 +28,7 @@ bot.on("message", async message => {
     if(!command.startsWith(prefix)) return;
 
     if(command === `${prefix}userinfo`){
-        let embed = new Discord.RichEmbed()
+        let u_embed = new Discord.RichEmbed()
         .setColor("PURPLE")
         .setAuthor(message.author.username)
         .setThumbnail(message.author.displayAvatarURL)
@@ -36,51 +36,23 @@ bot.on("message", async message => {
         .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
         .addField("ID", `${message.author.id}`)
         .addField("Created at", `${message.author.createdAt}`)
+        .addFooter("Cute Bot", bot.displayAvatarURL)
         message.channel.send(embed);
     }
 
-    if(command === `${prefix}mute`){
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No permissions, you Baka! >_<");
-
-        let toMute = message.mentions.users.first() || message.guild.members.get(args[0]);
-        console.log(toMute);
-        if(!toMute) return message.reply("No user specified");
-        let role = message.guild.roles.find(r => r.name === "Muted");
-        if(!role){
-            try{
-                role = await message.guild.createRole({
-                    name: "Muted",
-                    color: "#000000",
-                    permissions: []
-                })
-   
-                message.guild.channels.forEach(async (channel, id) =>{
-                    await channel.overwritePermissions(role, {
-                        SEND_MESSAGES: "false",
-                        ADD_REACTIONS: "false"
-                    })
-                })
-           }catch(e){
-               console.log(e.stack);
-           }
-        }
-
-        if(toMute.roles.find(r => r.id == role.id)) return message.channel.send("User is already muted -_-");
-
-        await toMute.addRole(role);
-        let m_embed = new Discord.RichEmbed()
-        .setAuthor(message.user.author)
-        .setThumbnail(toMute.displayAvatarURL)
-        .setDescription("***Mutes***")
-        .addField("Muted", toMute.username)
-        .addField("Time", "0s")
-        .addField("Muted By", `${message.author.username}#${message.author.discriminator}`)
-        .setFooter("Cute | Bot", bot.displayAvatarURL);
-        console.log(m_embed);
-
-        return;
+    if(command === `${prefix}botinfo`){
+        let b_embed = new Discord.RichEmbed()
+        .setColor("PURPLE")
+        .setAuthor(message.author.username)
+        .setThumbnail(bot.displayAvatarURL)
+        .setDescription("***Bot Info***")
+        .addField("Full Name", `${bot.username}#${bot.discriminator}`)
+        .addField("Creator", "Cyntrap#8382")
+        .addField("Created at", bot.createdAt)
+        .addField("Invite Link:", link)
+        .addFooter("Cute Bot", bot.displayAvatarURL)
+        
     }
-
 
     return;
 })
