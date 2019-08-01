@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const botsettings = require("./botsettings.json")
 const bot = new Discord.Client();
-const prefix = '_';
+const prefix = botsettings.prefix;
 
 bot.on("ready", async => {
     console.log("Hentai Bot is online!!")
@@ -21,6 +21,18 @@ bot.on("message", async message => {
         message.channel.send("Hi ^-^");
     }
 
+    let messageArray = message.content.split(" ");
+    let command = args[0];
+    let args = messageArray.slice(1);
+
+    if(!command.startsWith(prefix)) return;
+
+    if(command === `${prefix}userinfo`){
+        let embed = new Discord.RichEmbed()
+        .setAuthor(message.author.username)
+        .setThumbnail(message.author.displayAvatarURL)
+        .setDescription("User Info")
+    }
 
 
 })
