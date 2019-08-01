@@ -44,23 +44,36 @@ bot.on("message", async message => {
 
         let toMute = message.mentions.users.first() || message.guild.members.get(args[0]);
         if(!toMute) return message.reply("No user specified");
-        let role;
-        try{
-             role = await message.guild.createRole({
-                 name: "Muted",
-                 color: "#000000",
-                 permissions: []
-             })
-
-             message.guild.channels.forEach(async (channel, id) =>{
-                 await channel.overwritePermissions(role, {
-                     SEND_MESSAGES: "false",
-                     ADD_REACTIONS: "false"
-                 })
-             })
-        }catch(e){
-            console.log(e.stack);
+        let role = message.guild.roles.find(r => r.name === "Muted");
+        if(!role){
+            try{
+                role = await message.guild.createRole({
+                    name: "Muted",
+                    color: "#000000",
+                    permissions: []
+                })
+   
+                message.guild.channels.forEach(async (channel, id) =>{
+                    await channel.overwritePermissions(role, {
+                        SEND_MESSAGES: "false",
+                        ADD_REACTIONS: "false"
+                    })
+                })
+           }catch(e){
+               console.log(e.stack);
+           }
         }
+
+        toMute.addRole(role);
+        let m_embed = new Discord.RichEmbed()
+        .setAuthor(message.user.author)
+        .setThumbnail(toMute.displayAvatarURL)
+        .setDescription("***Mutes***")
+        .addField("Muted", toMute.username)
+        .addField("Time", "0s")
+        .addField("Muted By", `${message.author.username}#${message.author.discriminator}`)
+        .setFooter("Cute | Bot", bot.displayAvatarURL)
+        console.log(m_embed);
 
         return;
     }
