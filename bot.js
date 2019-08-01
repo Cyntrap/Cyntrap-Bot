@@ -32,6 +32,7 @@ bot.on("message", async message => {
         .setAuthor(message.author.username)
         .setThumbnail(message.author.displayAvatarURL)
         .setDescription("User Info")
+        message.channel.send(embed);
     }
 
 
