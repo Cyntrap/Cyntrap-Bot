@@ -6,14 +6,11 @@ const prefix = '_';
 bot.on("ready", async => {
     console.log("Hentai Bot is online!!")
     bot.user.setActivity("hentai", {type: "WATCHING"});
-    try{
-        let link = await bot.generateInvite(["ADMINISTRATOR"]);
-        console.log(link);
-    }catch(e){
-        console.log(e.stack);
-    }
-
-
+    bot.generateInvite(["ADMINISTRATOR"]).then(link =>{
+            console.log(link);
+        }).catch(err =>{
+            console.log(err.stack);
+        })
 })
 
 bot.on("message", async message => {
