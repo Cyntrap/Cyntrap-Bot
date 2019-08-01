@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+const ytdl = require("ytdl-core");
+
 
 module.exports.run = async (bot, message, args) => {
 
@@ -14,6 +16,16 @@ module.exports.run = async (bot, message, args) => {
             message.reply("Successfully joined!")
         })
     }
+
+    const dispatcher = connection.playStream(ytdl(args[1]))
+    .on('end', ()=>{
+        message.channel.send("Song Ended!");
+        voiceChannel.leave();
+    })
+    .on('error', error =>{
+        console.log(error);
+    });
+    dispatcher.setVolumeLogarithmic(5 / 5);
 
 
 }
