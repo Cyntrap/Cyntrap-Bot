@@ -2,12 +2,12 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 
-    if(message.guild.voiceConnection){
-        message.guild.voiceConnection.disconnect();
-    }else{
-        message.channel.send("I must be in a voice channel!");
-    }
+    const voiceChannel = message.member.voiceChannel;
 
+    if(!voiceChannel) return message.channel.send("Join a voice channel!");
+
+    voiceChannel.leave();
+    
 }
 
 module.exports.help = {
