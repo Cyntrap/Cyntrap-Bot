@@ -10,6 +10,10 @@ module.exports.run = async (bot, message, args) => {
     if(!permissions.has("CONNECT")) return message.channel.send("I cant connect to that voice channel!");
     if(!permissions.has("SPEAK")) return message.channel.send("I CANT SPEAK >_<");
 
+    if(!args[1]){
+        message.send("Please provide a link -_-")
+    }
+
     try {
         var connection = await voiceChannel.join();
     }catch(e){
