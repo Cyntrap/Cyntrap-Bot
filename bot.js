@@ -18,7 +18,7 @@ bot.on("message", async message => {
     if(message.author.equals(bot.user.username)) return;
 
     if(message.content == "hello"){
-        message.channel.sendMessage("Hi ^-^");
+        message.channel.send("Hi ^-^");
     }
 
 
