@@ -2,16 +2,11 @@ const Discord = require("discord.js");
 const botsettings = require("./botsettings.json")
 const bot = new Discord.Client();
 const prefix = botsettings.prefix;
+const invite = "https://discordapp.com/oauth2/authorize?client_id=606424959803326465&permissions=8&scope=bot";
 
 bot.on("ready", async => {
     console.log("Hentai Bot is online!!")
     bot.user.setActivity("hentai", {type: "WATCHING"});
-    bot.generateInvite(["ADMINISTRATOR"]).then(link =>{
-            console.log(link);
-            const invite = link;
-        }).catch(err =>{
-            console.log(err.stack);
-        })
 })
 
 bot.on("message", async message => {
@@ -37,7 +32,7 @@ bot.on("message", async message => {
         .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
         .addField("ID", `${message.author.id}`)
         .addField("Created at", `${message.author.createdAt}`)
-        .setFooter("Cute Bot", bot.user.displayAvatarURL);
+        .setFooter("123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789", bot.user.displayAvatarURL);
         message.channel.send(user_embed);
 
         return;
