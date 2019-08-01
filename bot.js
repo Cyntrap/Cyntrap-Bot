@@ -39,7 +39,18 @@ bot.on("message", async message => {
         message.channel.send(embed);
     }
 
+    if(command === `${prefix}mute`){
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No permissions, you Baka! >_<");
 
+        let toMute = message.mentions.users.first() || message.guild.members.get(args[0]);
+        if(!toMute) return message.reply("No user specified");
+
+
+
+    }
+
+
+    return;
 })
 
 bot.login(process.env.BOT_TOKEN);
