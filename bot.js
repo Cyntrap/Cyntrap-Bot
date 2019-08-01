@@ -44,11 +44,25 @@ bot.on("message", async message => {
 
         let toMute = message.mentions.users.first() || message.guild.members.get(args[0]);
         if(!toMute) return message.reply("No user specified");
+        let role;
+        try{
+             role = await message.guild.createRole({
+                 name: "Muted",
+                 color: "#000000",
+                 permissions: []
+             })
 
-        message.channel.send(toMute);
+             message.guild.channels.forEach(async (channel, id) =>{
+                 await channel.overwritePermissions(role, {
+                     SEND_MESSAGES: "false",
+                     ADD_REACTIONS: "false"
+                 })
+             })
+        }catch(e){
+            console.log(e.stack);
+        }
 
-
-
+        return;
     }
 
 
