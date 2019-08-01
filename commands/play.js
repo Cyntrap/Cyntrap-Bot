@@ -10,8 +10,8 @@ module.exports.run = async (bot, message, args) => {
     if(!permissions.has("CONNECT")) return message.channel.send("I cant connect to that voice channel!");
     if(!permissions.has("SPEAK")) return message.channel.send("I CANT SPEAK >_<");
 
-    if(!args[1]){
-        message.send("Please provide a link -_-")
+    if(!args[0]){
+        message.channel.send("Please provide a link -_-")
     }
 
     try {
@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
     }
 
 
-    const dispatcher = connection.playStream(ytdl(args[1]))
+    const dispatcher = connection.playStream(ytdl(args[0]))
     .on('end', ()=>{
         message.channel.send("Song Ended!");
         voiceChannel.leave();
