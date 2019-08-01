@@ -36,8 +36,8 @@ bot.on("message", async message => {
         .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
         .addField("ID", `${message.author.id}`)
         .addField("Created at", `${message.author.createdAt}`)
-        .addFooter("Cute Bot", bot.displayAvatarURL)
-        message.channel.send(embed);
+        .addFooter("Cute Bot", bot.displayAvatarURL);
+        message.channel.send(u_embed);
     }
 
     if(command === `${prefix}botinfo`){
@@ -50,7 +50,8 @@ bot.on("message", async message => {
         .addField("Creator", "Cyntrap#8382")
         .addField("Created at", bot.createdAt)
         .addField("Invite Link:", link)
-        .addFooter("Cute Bot", bot.displayAvatarURL)
+        .addFooter("Cute Bot", bot.displayAvatarURL);
+        message.channel.send(b_embed)
         
     }
 
