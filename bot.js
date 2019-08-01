@@ -64,7 +64,7 @@ bot.on("message", async message => {
            }
         }
 
-        if(toMute.roles.has(role.id)) return message.channel.send(`${toMute.username} is already muted!`);
+        if(toMute.roles.find(role.id)) return message.channel.send(`${toMute.username} is already muted!`);
 
         await toMute.addRole(role);
         let m_embed = new Discord.RichEmbed()
