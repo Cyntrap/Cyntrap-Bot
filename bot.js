@@ -1,10 +1,11 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
+const server = message.guild.id;
 
 bot.on("ready", function(message){
     console.log("Hentai Bot is online!!")
     bot.user.setActivity("hentai", {type: "WATCHING"});
-    message.guild.createRole({
+    server.createRole({
         name: "Cute Bot",
         color: "PURPLE",
     })
