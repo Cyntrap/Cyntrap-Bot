@@ -45,6 +45,8 @@ bot.on("message", async message => {
         let toMute = message.mentions.users.first() || message.guild.members.get(args[0]);
         if(!toMute) return message.reply("No user specified");
 
+        message.channel.search(toMute);
+
 
 
     }
