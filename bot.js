@@ -43,6 +43,7 @@ bot.on("message", async message => {
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No permissions, you Baka! >_<");
 
         let toMute = message.mentions.users.first() || message.guild.members.get(args[0]);
+        console.log(toMute);
         if(!toMute) return message.reply("No user specified");
         let role = message.guild.roles.find(r => r.name === "Muted");
         if(!role){
@@ -64,7 +65,7 @@ bot.on("message", async message => {
            }
         }
 
-        if(toMute.roles.find(role.id)) return message.channel.send(`${toMute.username} is already muted!`);
+        if(toMute.roles.find(r => r.id == role.id)) return message.channel.send("User is already muted -_-");
 
         await toMute.addRole(role);
         let m_embed = new Discord.RichEmbed()
