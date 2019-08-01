@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
     let server_embed = new Discord.RichEmbed()
     .setTitle("***Server Info***")
-    .setDescriptionP("Information about the server")
+    .setDescription("Information about the server")
     .setThumbnail(message.guild.iconURL)
     .setAuthor(`${message.guild.name} Info`, message.guild.iconURL)
     .addField("Server Name", `${message.guild.name}`)

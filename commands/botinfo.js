@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const invite = "https://discordapp.com/oauth2/authorize?client_id=606424959803326465&permissions=8&scope=bot";
 
 module.exports.run = async (bot, message, args) => {
     let bot_embed = new Discord.RichEmbed()

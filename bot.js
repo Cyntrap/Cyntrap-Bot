@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const botsettings = require("./botsettings.json")
 const bot = new Discord.Client();
 const prefix = botsettings.prefix;
-const invite = "https://discordapp.com/oauth2/authorize?client_id=606424959803326465&permissions=8&scope=bot";
+
 const fs = require("fs");
 bot.commands = new Discord.Collection();
 
