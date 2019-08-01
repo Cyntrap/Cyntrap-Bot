@@ -12,7 +12,7 @@ fs.readdir("./commands/", (err, files) =>{
 
     let jsfile = files.filter(f => f.split(".")).pop() === "js"
     if(jsfile.length <= 0){
-        console.log("Coudn't find commands");
+        return console.log("Coudn't find commands");
     }
 
     jsfile.forEach((f, i) => {
