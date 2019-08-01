@@ -64,7 +64,7 @@ bot.on("message", async message => {
            }
         }
 
-        toMute.addRole(role);
+        toMute.member.addRole(role);
         let m_embed = new Discord.RichEmbed()
         .setAuthor(message.user.author)
         .setThumbnail(toMute.displayAvatarURL)
@@ -72,7 +72,7 @@ bot.on("message", async message => {
         .addField("Muted", toMute.username)
         .addField("Time", "0s")
         .addField("Muted By", `${message.author.username}#${message.author.discriminator}`)
-        .setFooter("Cute | Bot", bot.displayAvatarURL)
+        .setFooter("Cute | Bot", bot.displayAvatarURL);
         console.log(m_embed);
 
         return;
