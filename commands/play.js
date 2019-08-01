@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
 
     const voiceChannel = message.member.voiceChannel;
     if(!voiceChannel) return message.channel.send("Join a voice channel!");
-    const permissions = voiceChannel.permissionsFor(message.bot.user);
+    const permissions = voiceChannel.permissionsFor(bot.user);
     if(!permissions.has("CONNECT")) return message.channel.send("I cant connect to that voice channel!");
     if(!permissions.has("SPEAK")) return message.channel.send("I CANT SPEAK >_<");
 
