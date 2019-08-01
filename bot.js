@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 
 bot.on("ready", function(){
     console.log("Hentai Bot is online!!")
-    bot.user.setActivity("with kids");
+    bot.user.setActivity("hentai", {type: "WATCHING"});
 })
 
 bot.on("message", function(message){
