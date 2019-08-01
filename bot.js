@@ -32,7 +32,7 @@ bot.on("message", async message => {
         .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
         .addField("ID", `${message.author.id}`)
         .addField("Created at", `${message.author.createdAt}`)
-        .setFooter("123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789", bot.user.displayAvatarURL);
+        .setFooter("Cute Bot", bot.user.displayAvatarURL);
         message.channel.send(user_embed);
 
         return;
