@@ -29,9 +29,13 @@ bot.on("message", async message => {
 
     if(command === `${prefix}userinfo`){
         let embed = new Discord.RichEmbed()
+        .setColor("PURPLE")
         .setAuthor(message.author.username)
         .setThumbnail(message.author.displayAvatarURL)
-        .setDescription("User Info")
+        .setDescription("***User Info***")
+        .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
+        .addField("ID", `${message.author.id}`)
+        .addField("Created at", `${message.author.createdAt}`)
         message.channel.send(embed);
     }
 
