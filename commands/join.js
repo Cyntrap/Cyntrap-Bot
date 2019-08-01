@@ -13,6 +13,6 @@ module.exports.run = async (bot, message, args) => {
 
 }
 
-module.exports.name = {
+module.exports.help = {
     name: "join"
 }
