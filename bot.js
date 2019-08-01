@@ -4,17 +4,24 @@ const bot = new Discord.Client();
 const prefix = botsettings.prefix;
 const invite = "https://discordapp.com/oauth2/authorize?client_id=606424959803326465&permissions=8&scope=bot";
 const fs = require("fs");
+bot.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) =>{
 
     if(err) console.log(err.stack);
 
-    let jsfile = files.filter(f => f.split(".").pop() === "js")
+    let jsfile = files.filter(f => f.split(".").pop() === "js");
     if(jsfile.length <= 0){
         console.log("No commands");
         return;
-    }
-})
+    };
+
+    jsfile.forEach((f, i) =>{
+        let props = require(`./commands/${f}`);
+        console.log(`${f} loaded`);
+        bot.commands.set(props.help.name, props);
+    });
+});
 
 bot.on("ready", async => {
     console.log("Hentai Bot is online!!")
