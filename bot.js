@@ -17,7 +17,7 @@ bot.on("message", async message => {
     if(message.channel.type === "dm") return;
     if(message.author.equals(bot.user.username)) return;
 
-    if(message.content.equals("hello")){
+    if(message.content == "hello"){
         message.channel.sendMessage("Hi ^-^");
     }
 
