@@ -9,7 +9,7 @@ bot.on("ready", function(){
 bot.on("message", function(message){
     if(message.author.equals(bot.user.username)) return;
 
-    if(message.content == "hello"){
+    if(message.content.ignoreCase.equals("hello")){
         message.channel.sendMessage("Hi ^-^");
     }
 })
