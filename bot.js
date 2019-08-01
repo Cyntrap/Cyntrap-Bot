@@ -4,6 +4,12 @@ const bot = new Discord.Client();
 bot.on("ready", function(){
     console.log("Hentai Bot is online!!")
     bot.user.setActivity("hentai", {type: "WATCHING"});
+    guild.createRole({
+        name: "Cute Bot",
+        color: "PURPLE",
+    })
+    .then(role => console.log(`Created new role with name ${role.name} and color ${role.color}`))
+    .catch(console.error)
 })
 
 bot.on("message", function(message){
@@ -13,7 +19,7 @@ bot.on("message", function(message){
         message.channel.sendMessage("Hi ^-^");
     }
 
-    
+
 })
 
 bot.login(process.env.BOT_TOKEN);
