@@ -4,6 +4,10 @@ const bot = new Discord.Client();
 const prefix = botsettings.prefix;
 
 const fs = require("fs");
+
+global.servers = {};
+
+var servers = {};
 bot.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) =>{
