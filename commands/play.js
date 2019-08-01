@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
     .on('error', error =>{
         console.log(error);
     });
-    dispatcher.setVolumeLogarithmic(5 / 5);
+    dispatcher.setVolume("0.5");
 
 
 }
