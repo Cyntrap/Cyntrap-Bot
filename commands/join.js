@@ -9,6 +9,8 @@ module.exports.run = async (bot, message, args) => {
                 message.reply("Successfully joined!")
             })
         }
+    }else{
+        message.channel.send("You must be in a voice channel!");
     }
 
 }
