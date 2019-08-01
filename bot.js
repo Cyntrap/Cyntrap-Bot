@@ -9,9 +9,11 @@ bot.on("ready", function(){
 bot.on("message", function(message){
     if(message.author.equals(bot.user.username)) return;
 
-    if(message.content.equalsIgnoreCase("hello")){
+    if(message.content.equals("hello")){
         message.channel.sendMessage("Hi ^-^");
     }
+
+    
 })
 
 bot.login(process.env.BOT_TOKEN);
