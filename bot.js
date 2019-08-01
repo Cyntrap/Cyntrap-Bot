@@ -3,6 +3,18 @@ const botsettings = require("./botsettings.json")
 const bot = new Discord.Client();
 const prefix = botsettings.prefix;
 const invite = "https://discordapp.com/oauth2/authorize?client_id=606424959803326465&permissions=8&scope=bot";
+const fs = require("fs");
+
+fs.readdir("./commands/", (err, files) =>{
+
+    if(err) console.log(err.stack);
+
+    let jsfile = files.filter(f => f.split(".").pop() === "js")
+    if(jsfile.length <= 0){
+        console.log("No commands");
+        return;
+    }
+})
 
 bot.on("ready", async => {
     console.log("Hentai Bot is online!!")
