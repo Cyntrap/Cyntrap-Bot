@@ -22,7 +22,7 @@ bot.on("message", async message => {
     }
 
     let messageArray = message.content.split(" ");
-    let command = args[0];
+    let command = messageArray[0];
     let args = messageArray.slice(1);
 
     if(!command.startsWith(prefix)) return;
