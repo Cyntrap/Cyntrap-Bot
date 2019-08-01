@@ -10,12 +10,13 @@ module.exports.run = async (bot, message, args) => {
     if(!permissions.has("CONNECT")) return message.channel.send("I cant connect to that voice channel!");
     if(!permissions.has("SPEAK")) return message.channel.send("I CANT SPEAK >_<");
 
-    if(!message.member.voiceConnection){
-        message.member.voiceChannel.join()
-        .then(connection =>{
-            message.reply("Successfully joined!")
-        })
+    try {
+        var connection = await voiceChannel.join();
+    }catch(e){
+        console.log(e.stack);
+        return message.channel.send("Couldn't join voice channel!");
     }
+
 
     const dispatcher = connection.playStream(ytdl(args[1]))
     .on('end', ()=>{
