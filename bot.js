@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 bot.on("ready", function(message){
     console.log("Hentai Bot is online!!")
     bot.user.setActivity("hentai", {type: "WATCHING"});
-    message.channel.guild.createRole({
+    message.guild.createRole({
         name: "Cute Bot",
         color: "PURPLE",
     })
