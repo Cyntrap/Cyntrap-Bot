@@ -59,10 +59,10 @@ function play(guild, song, queue){
         message.channel.send(`${song.title} has ended`);
         serverQueue.songs.shift();
         play(guild, serverQueue.songs[0], queue);
-        message.channel.send(`${song.title} has started`);
     }).on('error', error => console.log(error.stack));
-    message.channel.send(`${song.title} has started!`);
     dispatcher.setVolume("0.5");
+    message.channel.send(`${song.title} has started!`);
+    
 
 }
 
