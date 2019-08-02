@@ -124,12 +124,12 @@ function volume(serverQueue, message){
 }
 
 
-
+module.exports.volume = volume;
 module.exports.skip = skip;
 module.exports.stop = stop;
 module.exports.pause = pause;
 module.exports.resume = resume;
-module.exports.volume = volume;
+
 
 
 
