@@ -13,10 +13,10 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
     
     if(!args[0]) return message.channel.send("Please provide a link -_-");
 
-    const songInfo = ytdl.getInfo(args[0]);
+    const songInfo = ytdl.getInfo(args[1]);
     const song = {
         title: songInfo.title,
-        url: songInfo.url
+        url: songInfo.video_url
     }
     if(!serverQueue) {
         const queueConstruct = {
@@ -44,9 +44,6 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
         return message.channel.send(`${song.title} has been added to the queue`);
     }
 
-    return undefined
-
-    
 function play(guild, song, queue){
     const ytdl = require("ytdl-core");
     const serverQueue = queue.get(guild.id);
