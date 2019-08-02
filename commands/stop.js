@@ -8,8 +8,8 @@ module.exports = class stop {
     }
 
     async run (bot, message, args, serverQueue, queue){
-		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
-		if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
+		if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
+		if (!serverQueue) return message.channel.send('There is nothing playing that I could stop for you.');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
 		return undefined;
