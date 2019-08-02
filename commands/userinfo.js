@@ -7,7 +7,7 @@ module.exports = class userinfo {
         this.usage = "_userinfo"
     }
 
-    async (bot, message, args){
+    async run (bot, message, args){
         let user_embed = new Discord.RichEmbed()
         .setColor("PURPLE")
         .setAuthor(message.author.username)

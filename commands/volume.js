@@ -7,7 +7,7 @@ module.exports = class volume {
         this.usage = "_volume"
     }
 
-    async (bot, message, args, serverQueue){
+    async run (bot, message, args, serverQueue){
         if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
         if(!serverQueue) return message.channel.send("There is no queue");
         message.channel.send(`Current volume: ${serverQueue.volume}`);

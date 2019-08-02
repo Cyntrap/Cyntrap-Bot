@@ -7,7 +7,7 @@ module.exports = class pause {
         this.usage = "_pause"
     }
 
-    async (bot, message, args, serverQueue){
+    async run (bot, message, args, serverQueue){
         if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
         if(serverQueue && serverQueue.playing){
             serverQueue.playing = false;

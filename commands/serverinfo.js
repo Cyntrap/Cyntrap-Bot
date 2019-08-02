@@ -7,7 +7,7 @@ module.exports = class serverinfo {
         this.usage = "_serverinfo"
     }
 
-    async (bot, message, args){
+    async run (bot, message, args){
         let server_embed = new Discord.RichEmbed()
         .setColor("PURPLE")
         .setTitle("***Server Info***")

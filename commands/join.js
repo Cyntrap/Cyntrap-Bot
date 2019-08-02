@@ -7,7 +7,7 @@ module.exports = class join {
         this.usage = "_join"
     }
 
-    async (bot, message, args){
+    async run (bot, message, args){
         const voiceChannel = message.member.voiceChannel;
 
         if(voiceChannel){

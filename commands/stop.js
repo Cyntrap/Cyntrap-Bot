@@ -7,7 +7,7 @@ module.exports = class stop {
         this.usage = "_stop"
     }
 
-    async (bot, message, args, serverQueue){
+    async run (bot, message, args, serverQueue){
         const voiceChannel = message.member.voiceChannel;
 
         if(!voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");

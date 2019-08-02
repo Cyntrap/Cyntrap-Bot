@@ -8,7 +8,7 @@ module.exports = class resume {
         this.usage = "_resume"
     }
 
-    async (bot, message, args, serverQueue){
+    async run (bot, message, args, serverQueue){
         if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
         if(serverQueue && !serverQueue.playing){
             serverQueue.playing = true;

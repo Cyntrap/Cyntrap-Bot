@@ -7,7 +7,7 @@ module.exports = class queue {
         this.usage = "_queue"
     }
 
-    async (bot, message, args, serverQueue, queue){
+    async run (bot, message, args, serverQueue, queue){
         if(!serverQueue) return message.channel.send(" No Queue >_< ")
         let queue_embed = new Discord.RichEmbed()
         .setTitle("🎵 ***Song Queue*** 🎵")

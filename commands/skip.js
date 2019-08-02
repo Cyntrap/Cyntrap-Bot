@@ -7,7 +7,7 @@ module.exports = class skip {
         this.usage = "_skip"
     }
 
-    async (bot, message, args, serverQueue){
+    async run (bot, message, args, serverQueue){
         if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
         if(!serverQueue){
             message.channel.send("No songs for me to skip >_<");
