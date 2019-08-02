@@ -64,17 +64,6 @@ function play(guild, song, queue){
 
 }
 
-function skip(serverQueue, message){
-    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
-    if(!serverQueue){
-        message.channel.send("No songs for me to skip >_<");
-        
-    }
-    serverQueue.connection.dispatcher.end();
-    message.channel.send(`🎵 **Skipped Song** 🎵`);
-    return undefined;
-}
-
 function stop(serverQueue, message){
     const voiceChannel = message.member.voiceChannel;
 
@@ -112,7 +101,7 @@ function resume(serverQueue, message){
     message.channel.send("Music is already playing >_<");
 }
 
-function volume(serverQueue, message){
+function volume(serverQueue, message, args){
     if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
     if(!serverQueue) return message.channel.send("There is no queue");
     message.channel.send(`Current volume: ${serverQueue.volume}`);
@@ -125,14 +114,9 @@ function volume(serverQueue, message){
 
 
 module.exports.volume = volume;
-module.exports.skip = skip;
 module.exports.stop = stop;
 module.exports.pause = pause;
 module.exports.resume = resume;
-
-
-
-
 
 module.exports.help = {
     name: "play"
