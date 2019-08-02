@@ -12,7 +12,7 @@ module.exports = class play {
     }
 
     async (bot, message, args, serverQueue, queue, searchString){
-        
+
     const searchString = args.slice(1).join(' ');
 	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     const voiceChannel = message.member.voiceChannel;
@@ -23,16 +23,16 @@ module.exports = class play {
     
     if(!args[0]) return message.channel.send("Please provide a link -_-");
 
-    const songInfo = await ytdl.getInfo(args[0]);
+    const songInfo = ytdl.getInfo(args[0]);
 
     console.log(args);
 
     try {
-        var video = await youtube.getVideo(url);
+        var video = youtube.getVideo(url);
     } catch (error) {
         try {
-            var videos = await youtube.searchVideos(searchString, 1);
-            var video = await youtube.getVideoByID(videos[0].id);
+            var videos = youtube.searchVideos(searchString, 1);
+            var video = youtube.getVideoByID(videos[0].id);
         } catch (err) {
             console.error(err);
             return message.channel.send('I could not obtain any search results.');
@@ -57,7 +57,7 @@ module.exports = class play {
         queue.set(message.guild.id, queueConstruct);
         queueConstruct.songs.push(song);
         try {
-            var connection = await voiceChannel.join();
+            var connection = voiceChannel.join();
             queueConstruct.connection = connection;
             play(message.guild, queueConstruct.songs[0], queue)
         }catch(e){
