@@ -49,7 +49,7 @@ bot.on("message", async message => {
     const serverQueue = queue.get(message.guild.id);
 
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
-    if(commandfile) commandfile.run(bot, message, args, serverQueue, queue, url);
+    if(commandfile) commandfile.run(bot, message, args, serverQueue, queue);
 
     return;
 })

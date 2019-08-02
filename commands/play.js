@@ -5,7 +5,7 @@ const YouTube = require("simple-youtube-api");
 const youtube = new YouTube(process.env.API_KEY);
 
 
-module.exports.run = async (bot, message, args, serverQueue, queue, url) => {
+module.exports.run = async (bot, message, args, serverQueue, queue) => {
 
 
     const voiceChannel = message.member.voiceChannel;
