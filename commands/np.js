@@ -7,3 +7,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
     serverQueue.textChannel.send(`***Now Playing*** -- ${queueConstruct.songs[0].title}`);
 
 }
+
+module.exports.help = {
+    name: "np"
+}
