@@ -7,6 +7,11 @@ const prefix = botsettings.prefix;
 const queue = new Map();
 
 
+const { CommandHandler } = require("djs-commands")
+const CH = new CommandHandler({
+    folder: __dirname + '/commands/',
+    prefix: ['_']
+  });
 
 global.servers = {};
 
@@ -43,13 +48,15 @@ bot.on("message", async message => {
     }
 
     let args = message.content.split(" ");
-	let cmd = message.content.toLowerCase().split(' ')[0];
-	cmd = cmd.slice(prefix.length)
-
+	let command = message.content.toLowerCase().split(' ')[0];
+    cmd = CH.getCommand(command);
     const serverQueue = queue.get(message.guild.id);
-
-    let commandfile = bot.commands.get(cmd.slice(prefix.length));
-    if(commandfile) commandfile.run(bot, message, args, serverQueue, queue, searchString);
+    if(!cmd) return;
+    try{
+        cmd.run(bot,message,args)
+    }catch(e){
+        console.log(e)
+    }
 
     return;
 })

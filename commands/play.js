@@ -4,9 +4,16 @@ const YouTube = require("simple-youtube-api");
 
 const youtube = new YouTube(process.env.API_KEY);
 
+module.exports = class play {
+    constructor(){
+        this.name = "play"
+        this.alias = ["p"]
+        this.usage = "_test"
+    }
 
-module.exports.run = async (bot, message, args, serverQueue, queue) => {
-
+    async (bot, message, args, serverQueue, queue, searchString){
+        await message.delete();
+        
     const searchString = args.slice(1).join(' ');
 	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     const voiceChannel = message.member.voiceChannel;
@@ -82,9 +89,6 @@ function play(guild, song, queue){
     }).on('error', error => console.log(error.stack));
     message.channel.send(`🎵 **Now Playing** --> ${song.title} 🎵`);
 }
+    }
 
-}
-
-module.exports.help = {
-    name: "play"
 }

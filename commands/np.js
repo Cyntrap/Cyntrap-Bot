@@ -1,13 +1,15 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args, serverQueue, queue) => {
+module.exports = class np {
+    constructor(){
+        this.name = "np"
+        this.alias = ["np"]
+        this.usage = "_np"
+    }
 
-    if(!serverQueue.songs[0]) return message.channel.send("No song is currrenly playing");
+    async (bot, message, args, serverQueue, queue){
+        if(!serverQueue.songs[0]) return message.channel.send("No song is currrenly playing");
 
-    serverQueue.textChannel.send(`🎵 **Now Playing** --> ${serverQueue.songs[0].title} 🎵`);
-
-}
-
-module.exports.help = {
-    name: "np"
+        serverQueue.textChannel.send(`🎵 **Now Playing** --> ${serverQueue.songs[0].title} 🎵`);
+    }
 }
