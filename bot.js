@@ -45,7 +45,6 @@ bot.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
-    const url = args.replace(/<(.+)>/g, `$1`)
 
     const serverQueue = queue.get(message.guild.id);
 

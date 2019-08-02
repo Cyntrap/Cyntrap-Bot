@@ -28,12 +28,13 @@ module.exports.run = async (bot, message, args, serverQueue, queue, url) => {
             return message.channel.send("I couldn't find a song");
         }
     }
+    console.log(video);
     const songInfo = await ytdl.getInfo(args[0]);
     const song = {
         id: video.id,
         title: video.title,
         duration: video.duration,
-        url: `https://www.youtube.com/watch?v=${video.id}`
+        url: songInfo.url
     }
     if(!serverQueue) {
         const queueConstruct = {
@@ -58,7 +59,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue, url) => {
     }else {
         serverQueue.songs.push(song);  
         console.log(serverQueue.songs);
-        return message.channel.send(`🎵 ${song.title} has been added to the queue 🎵`);
+        return message.channel.send(`🎵 ${song.title} has been added to the queue (${song.duration}) 🎵`);
     }
 
 function play(guild, song, queue){

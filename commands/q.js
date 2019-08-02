@@ -11,7 +11,6 @@ ${serverQueue.songs.map(song => `*${song.title}`).join('\n')}
 **Now Playing** ${serverQueue.songs[0].title}
     `)
     **/
-   let length = serverQueue.songs.length - 9
     let queue_embed = new Discord.RichEmbed()
     .setTitle("🎵 ***Song Queue*** 🎵")
     .setDescription(`
