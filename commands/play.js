@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
     const songInfo = ytdl.getInfo(args[0]);
     const song = {
         title: songInfo.title,
-        url: songInfo.video_url
+        url: songInfo.url
     }
     if(!serverQueue) {
         const queueConstruct = {
