@@ -14,7 +14,6 @@ module.exports = class play {
     async run (bot, message, args, serverQueue, queue){
 
     const searchString = args.slice(1).join(' ');
-    const url = args[1];
     const voiceChannel = message.member.voiceChannel;
     if(!voiceChannel) return message.channel.send("Join a voice channel!");
     const permissions = voiceChannel.permissionsFor(bot.user);
@@ -24,6 +23,7 @@ module.exports = class play {
     if(!args[1]) return message.channel.send("Please provide a link -_-");
 
     const songInfo = ytdl.getInfo(args[1]);
+    const url = songInfo.video_url;
 
     console.log(args);
 
