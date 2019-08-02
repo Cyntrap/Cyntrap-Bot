@@ -42,14 +42,14 @@ bot.on("message", async message => {
         message.channel.send("Hi ^-^");
     }
 
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
+    let args = message.content.split(" ");
+	let cmd = msg.content.toLowerCase().split(' ')[0];
+	cmd = cmd.slice(PREFIX.length)
 
     const serverQueue = queue.get(message.guild.id);
 
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
-    if(commandfile) commandfile.run(bot, message, args, serverQueue, queue);
+    if(commandfile) commandfile.run(bot, message, args, serverQueue, queue, searchString);
 
     return;
 })

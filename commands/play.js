@@ -7,7 +7,8 @@ const youtube = new YouTube(process.env.API_KEY);
 
 module.exports.run = async (bot, message, args, serverQueue, queue) => {
 
-
+    const searchString = args.slice(1).join(' ');
+	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     const voiceChannel = message.member.voiceChannel;
     if(!voiceChannel) return message.channel.send("Join a voice channel!");
     const permissions = voiceChannel.permissionsFor(bot.user);
@@ -18,24 +19,25 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
 
     const songInfo = await ytdl.getInfo(args[0]);
 
-    try{
-        var video = await youtube.getVideo(songInfo.url);
-    }catch(e){
-        try{
-            var videos = youtube.searchVideos(args, 1);
+    console.log(args);
+
+    try {
+        var video = await youtube.getVideo(url);
+    } catch (error) {
+        try {
+            var videos = await youtube.searchVideos(searchString, 1);
             var video = await youtube.getVideoByID(videos[0].id);
-        }catch(e){
-            console.log(e.stack);
-            return message.channel.send("I couldn't find a song");
+        } catch (err) {
+            console.error(err);
+            return msg.channel.send('I could not obtain any search results.');
         }
     }
-    console.log(args);
     console.log(video);
     const song = {
         id: video.id,
         title: video.title,
         duration: video.duration,
-        url: songInfo.url
+        url: `https://www.youtube.com/watch?v=${video.id}`
     }
     if(!serverQueue) {
         const queueConstruct = {
