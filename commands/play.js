@@ -61,7 +61,7 @@ function play(guild, song, queue){
         play(guild, serverQueue.songs[0], queue);
     }).on('error', error => console.log(error.stack));
     dispatcher.setVolume("0.5");
-    message.channel.send(`${song.title} has started!`);
+    message.channel.send(`🎵 **Now Playing** --> ${song.title} 🎵`);
     
 
 }

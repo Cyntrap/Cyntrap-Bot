@@ -4,7 +4,7 @@ const play = require("./play.js")
 
 module.exports.run = async (bot, message, args, serverQueue, queue) => {
 
-    play.skip();
+    play.skip(serverQueue);
 
 }
 
