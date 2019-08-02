@@ -90,8 +90,30 @@ function stop(serverQueue, message){
     return undefined;
 }
 
+function pause(serverQueue){
+
+    if(serverQueue && serverQueue.playing){
+        serverQueue.playing = false;
+        serverQueue.connection.dispatcher.pause();
+        return message.channel.send("🎵 Music is paused 🎵");
+
+    }
+    message.channel.send("No music is playing >_<");
+}
+
+function resume(serverQueue){
+    if(serverQueue && !serverQueue.playing){
+        serverQueue.playing = true;
+        serverQueue.connection.dispatcher.resume();
+        return message.channel.send("🎵 Continuing Music 🎵");
+
+    }
+    message.channel.send("Music is already playing >_<");
+}
+
 module.exports.skip = skip;
 module.exports.stop = stop;
+module.exports.pause = pause;
 
 
 
