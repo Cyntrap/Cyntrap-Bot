@@ -80,9 +80,7 @@ module.exports = class play {
 			
 		
 			const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-				.on('end', reason => {
-					if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
-					else console.log(reason);
+				.on('end', () => {
 					serverQueue.songs.shift();
 					play(guild, serverQueue.songs[0]);
 				})
