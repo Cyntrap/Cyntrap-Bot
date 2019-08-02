@@ -76,6 +76,8 @@ function skip(serverQueue){
     return undefined;
 }
 
+module.exports.skip = skip;
+
 }
 
 
