@@ -11,9 +11,8 @@ module.exports = class play {
         this.usage = "_test"
     }
 
-    async run (bot, message, args, serverQueue, queue){
+    async run (bot, message, args, serverQueue, queue, searchString){
 
-    const searchString = args.slice(1).join(' ');
     const voiceChannel = message.member.voiceChannel;
     if(!voiceChannel) return message.channel.send("Join a voice channel!");
     const permissions = voiceChannel.permissionsFor(bot.user);
@@ -23,15 +22,20 @@ module.exports = class play {
     if(!args[0]) return message.channel.send("Please provide a link -_-");
 
     const songInfo = ytdl.getInfo(args[0]);
-    const url = songInfo.video_url;
-
-    console.log(args);
+    console.log(`This is the url ${songInfo.url}`);
 
     try {
-        var video = youtube.getVideo(url);
+        var video = await youtube.getVideo(songInfo.url);
     } catch (error) {
-        console.log(error.stack);
+        try {
+            var videos = await youtube.searchVideos(searchString, 1);
+            var video = await youtube.getVideoByID(videos[0].id);
+        } catch (err) {
+            console.error(err);
+            return msg.channel.send('I could not obtain any search results.');
+        }
     }
+    console.log(video);
     console.log(video);
     const song = {
         id: video.id,

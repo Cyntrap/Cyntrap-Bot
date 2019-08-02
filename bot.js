@@ -32,10 +32,11 @@ bot.on("message", async message => {
     let args = message.content.split(" ");
     let command = args[0];
     let cmd = CH.getCommand(command);
+    const searchString = args.slice(1).join(' ');
     if(!cmd) return;
  
     try{
-        cmd.run(bot,message,args,serverQueue,queue)
+        cmd.run(bot,message,args,serverQueue,queue,searchString)
     }catch(e){
         console.log(e)
     }
