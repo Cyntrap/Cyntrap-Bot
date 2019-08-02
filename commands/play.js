@@ -72,12 +72,27 @@ function skip(serverQueue){
         message.channel.send("No songs for me to skip >_<");
     }
     serverQueue.connection.dispatcher.end();
+    message.channel.send(`🎵 **Skipped Song** 🎵`);
+    return undefined;
+}
+
+function stop(serverQueue){
+    const voiceChannel = message.member.voiceChannel;
+
+    if(!voiceChannel) return message.channel.send("Join a voice channel!");
+    voiceChannel.leave();
+    serverQueue.songs = [];
+    serverQueue.connection.dispatcher.end();
+    message.channel.send(`🎵 💀 🎵`);
     return undefined;
 }
 
 module.exports.skip = skip;
+module.exports.stop = stop;
 
 }
+
+
 
 
 module.exports.help = {

@@ -1,15 +1,10 @@
 const Discord = require("discord.js");
+const play = require("./play.js");
 
-module.exports.run = async (bot, message, args, serverQueue, queue) => {
-
-    const voiceChannel = message.member.voiceChannel;
-
-    if(!voiceChannel) return message.channel.send("Join a voice channel!");
-    voiceChannel.leave();
-    serverQueue.songs = [];
-    serverQueue.connection.dispatcher.end();
-    return undefined;
+module.exports.run = async (bot, message, args, serverQueue) => {
     
+    play.stop();
+
 }
 
 module.exports.help = {
