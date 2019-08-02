@@ -3,6 +3,8 @@ const botsettings = require("./botsettings.json")
 const bot = new Discord.Client();
 const prefix = botsettings.prefix;
 
+const queue = new Map();
+
 const fs = require("fs");
 
 global.servers = {};
@@ -44,8 +46,10 @@ bot.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
 
+    const serverQueue = queue.get(message.guild.id);
+
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
-    if(commandfile) commandfile.run(bot, message, args);
+    if(commandfile) commandfile.run(bot, message, args, serverQueue, queue);
 
     return;
 })
