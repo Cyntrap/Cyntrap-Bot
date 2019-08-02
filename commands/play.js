@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
             var video = await youtube.getVideoByID(videos[0].id);
         } catch (err) {
             console.error(err);
-            return msg.channel.send('I could not obtain any search results.');
+            return message.channel.send('I could not obtain any search results.');
         }
     }
     console.log(video);

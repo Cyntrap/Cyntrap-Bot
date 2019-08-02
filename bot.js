@@ -43,7 +43,7 @@ bot.on("message", async message => {
     }
 
     let args = message.content.split(" ");
-	let cmd = msg.content.toLowerCase().split(' ')[0];
+	let cmd = message.content.toLowerCase().split(' ')[0];
 	cmd = cmd.slice(PREFIX.length)
 
     const serverQueue = queue.get(message.guild.id);
