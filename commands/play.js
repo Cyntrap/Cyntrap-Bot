@@ -18,7 +18,8 @@ module.exports = class play {
     
     if(!args[0]) return message.channel.send("Please provide a link -_-");
 
-    const songInfo = ytdl.getInfo(args[1]);
+    const songInfo = ytdl.getInfo(args[0]);
+
     const song = {
         title: songInfo.title,
         url: songInfo.video_url
@@ -37,7 +38,7 @@ module.exports = class play {
         try {
             var connection = voiceChannel.join();
             queueConstruct.connection = connection;
-            play(message.guild, queueConstruct.songs[0], queue)
+            play(message.guild, queueConstruct.songs[0],queue)
         }catch(e){
             console.log(e.stack);
             queue.delete(message.guild.id);
