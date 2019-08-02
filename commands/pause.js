@@ -5,6 +5,6 @@ module.exports.run = async (bot, message, args, serverQueue) => {
     play.pause(serverQueue);
 }
 
-module.expors.help = {
+module.exports.help = {
     name: "pause"
 }

@@ -5,6 +5,6 @@ module.exports.run = async (bot, message, args, serverQueue) => {
     play.resume(serverQueue);
 }
 
-module.expors.help = {
+module.exports.help = {
     name: "resume"
 }

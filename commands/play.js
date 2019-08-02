@@ -110,6 +110,13 @@ function resume(serverQueue){
     message.channel.send("Music is already playing >_<");
 }
 
+function volume(serverQueue){
+    if(!serverQueue) return message.channel.send("There is no queue");
+    message.channel.send(`Current volume: ${serverQueue.volume}`);
+    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 5);
+    return undefined;
+}
+
 
 
 module.exports.skip = skip;
