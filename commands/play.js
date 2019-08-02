@@ -84,7 +84,7 @@ function stop(serverQueue, message){
     if(!serverQueue){
         message.channel.send("Nothing is playing >_<");
     }
-    serverQueue = [];
+    queueConstruct.songs = [];
     serverQueue.connection.dispatcher.end();
     message.channel.send(`🎵 💀 🎵`);
     return undefined;
