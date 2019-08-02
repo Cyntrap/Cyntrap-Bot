@@ -36,7 +36,6 @@ module.exports = class play {
         }
     }
     console.log(video);
-    console.log(video);
     const song = {
         id: video.id,
         title: video.title,
@@ -68,24 +67,26 @@ module.exports = class play {
         console.log(serverQueue.songs);
         return message.channel.send(`🎵 ${song.title} has been added to the queue (${song.duration}) 🎵`);
     }
-
-function play(guild, song, queue){
-    const ytdl = require("ytdl-core");
-    const serverQueue = queue.get(guild.id);
-
-    if(!song){
-        serverQueue.voiceChannel.leave();
-        queue.delete(guild.id);
-        return;
-    }
-
-    const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-    .on('end', ()=>{
-        serverQueue.songs.shift();
-        play(guild, serverQueue.songs[0], queue);
-    }).on('error', error => console.log(error.stack));
-    message.channel.send(`🎵 **Now Playing** --> ${song.title} 🎵`);
-}
+    function play(guild, song) {
+        const serverQueue = queue.get(guild.id);
+    
+        if (!song) {
+            serverQueue.voiceChannel.leave();
+            queue.delete(guild.id);
+            return;
+        }
+    
+        const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+            .on('end', reason => {
+                if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
+                else console.log(reason);
+                serverQueue.songs.shift();
+                play(guild, serverQueue.songs[0]);
+            })
+            .on('error', error => console.error(error));
+        dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+    
+        serverQueue.textChannel.send(`Start playing: **${song.title}**`);
     }
 
 }
