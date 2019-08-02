@@ -15,18 +15,7 @@ ${serverQueue.songs.map(song => `*${song.title}`).join('\n')}
     let queue_embed = new Discord.RichEmbed()
     .setTitle("🎵 ***Song Queue*** 🎵")
     .setDescription(`
-    1 -> ${serverQueue.songs[0].title}
-    2 -> ${serverQueue.songs[1].title}
-    3 -> ${serverQueue.songs[2].title}
-    4 -> ${serverQueue.songs[3].title}
-    5 -> ${serverQueue.songs[4].title}
-    6 -> ${serverQueue.songs[5].title}
-    7 -> ${serverQueue.songs[6].title}
-    8 -> ${serverQueue.songs[7].title}
-    9 -> ${serverQueue.songs[8].title}
-    10 -> ${serverQueue.songs[9].title}
-
-    There is ${length} more songs..
+${serverQueue.songs.map(song => `*${song.title}`).join('\n')}
     `)
     .setFooter("Cute Bot", bot.user.displayAvatarURL);
 
