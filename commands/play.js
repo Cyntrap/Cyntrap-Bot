@@ -64,60 +64,6 @@ function play(guild, song, queue){
 
 }
 
-function stop(serverQueue, message){
-    const voiceChannel = message.member.voiceChannel;
-
-    if(!voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
-    if(!serverQueue){
-        message.channel.send("Nothing is playing >_<");
-    }
-    serverQueue.songs = []
-    serverQueue.connection.dispatcher.end();
-    voiceChannel.leave();
-    message.channel.send(`🎵 💀 🎵`);
-    return undefined;
-}
-
-function pause(serverQueue, message){
-
-    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
-    if(serverQueue && serverQueue.playing){
-        serverQueue.playing = false;
-        serverQueue.connection.dispatcher.pause();
-        return message.channel.send("🎵 Music is paused 🎵");
-
-    }
-    message.channel.send("No music is playing >_<");
-}
-
-function resume(serverQueue, message){
-    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
-    if(serverQueue && !serverQueue.playing){
-        serverQueue.playing = true;
-        serverQueue.connection.dispatcher.resume();
-        return message.channel.send("🎵 Continuing Music 🎵");
-
-    }
-    message.channel.send("Music is already playing >_<");
-}
-
-function volume(serverQueue, message, args){
-    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
-    if(!serverQueue) return message.channel.send("There is no queue");
-    message.channel.send(`Current volume: ${serverQueue.volume}`);
-    if(parseInt(args[0]) > 1000){
-        return message.channel.send("The volume cannot be set to more than a 1000");
-    }
-    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 5);
-    return undefined;
-}
-
-
-module.exports.volume = volume;
-module.exports.stop = stop;
-module.exports.pause = pause;
-module.exports.resume = resume;
-
 module.exports.help = {
     name: "play"
 }
