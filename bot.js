@@ -27,19 +27,19 @@ bot.on("message", async message => {
     if(message.content == "hello"){
         message.channel.send("Hi ^-^");
     }
+    const serverQueue = queue.get(message.guild.id);
 
     let args = message.content.split(" ");
-	let command = message.content.toLowerCase().split(' ')[0];
-    cmd = CH.getCommand(command);
-    const serverQueue = queue.get(message.guild.id);
+    let command = args[0];
+    let cmd = CH.getCommand(command);
     if(!cmd) return;
+ 
     try{
-        cmd.run(bot,message,args)
+        cmd.run(bot,message,args,serverQueue,queue)
     }catch(e){
         console.log(e)
     }
-
-    return;
-})
+ 
+});
 
 bot.login(process.env.BOT_TOKEN);
