@@ -33,7 +33,6 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
             var connection = await voiceChannel.join();
             queueConstruct.connection = connection;
             play(message.guild, queueConstruct.songs[0], queue)
-            message.channel.send(`${song.title} has started!`);
         }catch(e){
             console.log(e.stack);
             queue.delete(message.guild.id);
@@ -62,6 +61,7 @@ function play(guild, song, queue){
         play(guild, serverQueue.songs[0], queue);
         message.channel.send(`${song.title} has started`);
     }).on('error', error => console.log(error.stack));
+    message.channel.send(`${song.title} has started!`);
     dispatcher.setVolume("0.5");
 
 }

@@ -1,17 +1,16 @@
 const Discord = require("discord.js");
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (bot, message, args, serverQueue, queue) => {
 
     const voiceChannel = message.member.voiceChannel;
 
     if(!voiceChannel) return message.channel.send("Join a voice channel!");
-
     voiceChannel.leave();
-    message.channel.send("Successfuly left the voice channel");
-
+    serverQueue.songs = [];
+    serverQueue.connection.dispatcher.end();
     
 }
 
 module.exports.help = {
-    name: "leave"
+    name: "stop"
 }
