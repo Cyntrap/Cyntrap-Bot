@@ -89,7 +89,7 @@ function stop(serverQueue, message){
     return undefined;
 }
 
-function pause(serverQueue){
+function pause(serverQueue, message){
 
     if(serverQueue && serverQueue.playing){
         serverQueue.playing = false;
@@ -100,7 +100,7 @@ function pause(serverQueue){
     message.channel.send("No music is playing >_<");
 }
 
-function resume(serverQueue){
+function resume(serverQueue, message){
     if(serverQueue && !serverQueue.playing){
         serverQueue.playing = true;
         serverQueue.connection.dispatcher.resume();
@@ -110,9 +110,12 @@ function resume(serverQueue){
     message.channel.send("Music is already playing >_<");
 }
 
-function volume(serverQueue){
+function volume(serverQueue, message){
     if(!serverQueue) return message.channel.send("There is no queue");
     message.channel.send(`Current volume: ${serverQueue.volume}`);
+    if(parseInt(args[0]) > 1000){
+        return message.channel.send("The volume cannot be set to more than a 1000");
+    }
     serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 5);
     return undefined;
 }
