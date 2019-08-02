@@ -22,13 +22,14 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
         var video = await youtube.getVideo(songInfo.url);
     }catch(e){
         try{
-            var videos = youtube.searchVideos(songInfo.url, 1);
+            var videos = youtube.searchVideos(args, 1);
             var video = await youtube.getVideoByID(videos[0].id);
         }catch(e){
             console.log(e.stack);
             return message.channel.send("I couldn't find a song");
         }
     }
+    console.log(args);
     console.log(video);
     const song = {
         id: video.id,
