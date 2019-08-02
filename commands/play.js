@@ -61,19 +61,6 @@ function play(guild, song, queue){
     }).on('error', error => console.log(error.stack));
     dispatcher.setVolume("0.5");
     message.channel.send(`🎵 **Now Playing** --> ${song.title} 🎵`);
-    
-    function stop(serverQueue){
-    const voiceChannel = message.member.voiceChannel;
-
-    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
-    voiceChannel.leave();
-    if(!serverQueue){
-        message.channel.send("Nothing is playing >_<");
-    }
-    serverQueue.songs = [];
-    serverQueue.connection.dispatcher.end();
-    message.channel.send(`🎵 💀 🎵`);
-    return undefined;
 }
 
 }
@@ -89,7 +76,7 @@ function skip(serverQueue){
     return undefined;
 }
 
-function stop(serverQueue){
+function stop(songs){
     const voiceChannel = message.member.voiceChannel;
 
     if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
@@ -97,8 +84,9 @@ function stop(serverQueue){
     if(!serverQueue){
         message.channel.send("Nothing is playing >_<");
     }
-    serverQueue.songs = [];
-    serverQueue.connection.dispatcher.end(`🎵 💀 🎵`);
+    songs = [];
+    serverQueue.connection.dispatcher.end();
+    message.channel.send(`🎵 💀 🎵`);
     return undefined;
 }
 

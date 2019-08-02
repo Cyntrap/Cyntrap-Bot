@@ -3,7 +3,7 @@ const play = require("./play.js");
 
 module.exports.run = async (bot, message, args, serverQueue) => {
     
-    play.stop();
+    play.stop(serverQueue.songs);
 
 }
 
