@@ -76,15 +76,15 @@ function skip(serverQueue){
     return undefined;
 }
 
-function stop(songs){
+function stop(serverQueue, message){
     const voiceChannel = message.member.voiceChannel;
 
-    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
+    if(!voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
     voiceChannel.leave();
     if(!serverQueue){
         message.channel.send("Nothing is playing >_<");
     }
-    songs = [];
+    serverQueue = [];
     serverQueue.connection.dispatcher.end();
     message.channel.send(`🎵 💀 🎵`);
     return undefined;
