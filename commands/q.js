@@ -20,7 +20,7 @@ ${serverQueue.songs.map(song => `*${song.title}`).join('\n')}
     `)
     .setFooter("Cute Bot", bot.user.displayAvatarURL);
 
-
+    message.channel.send(queue_embed);
 
 }
 
