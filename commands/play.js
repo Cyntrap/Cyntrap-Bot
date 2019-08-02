@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
         try {
             var connection = await voiceChannel.join();
             queueConstruct.connection = connection;
-            play(message.guild, queueConstruct.songs[0])
+            play(message.guild, queueConstruct.songs[0], queue)
         }catch(e){
             console.log(e.stack);
             queue.delete(message.guild.id);
@@ -47,7 +47,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
 
 }
 
-function play(guild, song){
+function play(guild, song, queue){
     const serverQueue = queue.get(guild.id);
 
     if(!song){
@@ -55,6 +55,8 @@ function play(guild, song){
         queue.delete(guild.id);
         return;
     }
+
+    console.log(serverQueue.songs);
 
     const dispatcher = serverQueue.connection.playStream(ydtl(song.url))
     .on('end', ()=>{
