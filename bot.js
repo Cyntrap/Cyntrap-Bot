@@ -27,7 +27,6 @@ bot.on("message", async message => {
     if(message.content == "hello"){
         message.channel.send("Hi ^-^");
     }
-    const serverQueue = queue.get(message.guild.id);
 
     let args = message.content.split(" ");
     let command = args[0];
@@ -35,6 +34,8 @@ bot.on("message", async message => {
     const searchString = args.slice(1).join(' ');
     if(!cmd) return;
  
+
+    const serverQueue = queue.get(message.guild.id);
     try{
         cmd.run(bot,message,args,serverQueue,queue,searchString)
     }catch(e){
