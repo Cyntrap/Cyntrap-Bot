@@ -91,6 +91,7 @@ function stop(serverQueue, message){
 
 function pause(serverQueue, message){
 
+    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
     if(serverQueue && serverQueue.playing){
         serverQueue.playing = false;
         serverQueue.connection.dispatcher.pause();
@@ -101,6 +102,7 @@ function pause(serverQueue, message){
 }
 
 function resume(serverQueue, message){
+    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
     if(serverQueue && !serverQueue.playing){
         serverQueue.playing = true;
         serverQueue.connection.dispatcher.resume();
@@ -111,6 +113,7 @@ function resume(serverQueue, message){
 }
 
 function volume(serverQueue, message){
+    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
     if(!serverQueue) return message.channel.send("There is no queue");
     message.channel.send(`Current volume: ${serverQueue.volume}`);
     if(parseInt(args[0]) > 1000){
@@ -126,6 +129,7 @@ module.exports.skip = skip;
 module.exports.stop = stop;
 module.exports.pause = pause;
 module.exports.resume = resume;
+module.exports.volume = volume;
 
 
 
