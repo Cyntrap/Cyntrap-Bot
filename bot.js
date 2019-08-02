@@ -36,8 +36,10 @@ bot.on("message", async message => {
  
 
     const serverQueue = queue.get(message.guild.id);
+    const searchString = args.slice(1).join(' ');
+	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     try{
-        cmd.run(bot,message,args,serverQueue,queue,searchString)
+        cmd.run(bot,message,args,serverQueue,queue,searchString, url)
     }catch(e){
         console.log(e)
     }
