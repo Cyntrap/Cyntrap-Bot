@@ -8,6 +8,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
     voiceChannel.leave();
     serverQueue.songs = [];
     serverQueue.connection.dispatcher.end();
+    return undefined;
     
 }
 

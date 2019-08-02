@@ -7,6 +7,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
         message.channel.send("No songs for me to skip >_<");
     }
     serverQueue.connection.dispatcher.end();
+    return undefined;
 
 }
 
