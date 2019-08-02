@@ -56,7 +56,6 @@ function play(guild, song, queue){
 
     const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
     .on('end', ()=>{
-        message.channel.send(`${song.title} has ended`);
         serverQueue.songs.shift();
         play(guild, serverQueue.songs[0], queue);
     }).on('error', error => console.log(error.stack));
