@@ -66,10 +66,13 @@ function play(guild, song, queue){
 }
 
 function skip(serverQueue, message){
+    const voiceChannel = message.member.voiceChannel;
 
     if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
     if(!serverQueue){
         message.channel.send("No songs for me to skip >_<");
+        voiceChannel.leave();
+        
     }
     serverQueue.connection.dispatcher.end();
     message.channel.send(`🎵 **Skipped Song** 🎵`);
