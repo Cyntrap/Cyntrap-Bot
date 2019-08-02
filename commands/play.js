@@ -20,9 +20,9 @@ module.exports = class play {
     if(!permissions.has("CONNECT")) return message.channel.send("I cant connect to that voice channel!");
     if(!permissions.has("SPEAK")) return message.channel.send("I CANT SPEAK >_<");
     
-    if(!args[1]) return message.channel.send("Please provide a link -_-");
+    if(!args[0]) return message.channel.send("Please provide a link -_-");
 
-    const songInfo = ytdl.getInfo(args[1]);
+    const songInfo = ytdl.getInfo(args[0]);
     const url = songInfo.video_url;
 
     console.log(args);
