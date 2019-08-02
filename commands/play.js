@@ -30,13 +30,7 @@ module.exports = class play {
     try {
         var video = youtube.getVideo(url);
     } catch (error) {
-        try {
-            var videos = youtube.searchVideos(searchString, 1);
-            var video = youtube.getVideoByID(videos[0].id);
-        } catch (err) {
-            console.error(err);
-            return message.channel.send('I could not obtain any search results.');
-        }
+        console.log(error.stack);
     }
     console.log(video);
     const song = {
