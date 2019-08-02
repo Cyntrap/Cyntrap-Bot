@@ -21,7 +21,7 @@ module.exports = class play {
     
     if(!args[0]) return message.channel.send("Please provide a link -_-");
 
-    const songInfo = ytdl.getInfo(args[0]);
+    const songInfo = ytdl.getInfo(args[1]);
     console.log(`This is the url ${songInfo.url}`);
 
     try {
