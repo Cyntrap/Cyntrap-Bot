@@ -1,9 +1,8 @@
 const Discord = require("discord.js");
+const ytdl = require("ytdl-core");
 
 
 module.exports.run = async (bot, message, args, serverQueue, queue) => {
-
-    const ytdl = require("ytdl-core");
 
 
     const voiceChannel = message.member.voiceChannel;
@@ -33,7 +32,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
         try {
             var connection = await voiceChannel.join();
             queueConstruct.connection = connection;
-            play(message.guild, queueConstruct.songs[0], queue, ydtl)
+            play(message.guild, queueConstruct.songs[0], queue)
         }catch(e){
             console.log(e.stack);
             queue.delete(message.guild.id);
@@ -48,7 +47,8 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
     return undefined
 
     
-function play(guild, song, queue, ytdl){
+function play(guild, song, queue){
+    const ytdl = require("ytdl-core");
     const serverQueue = queue.get(guild.id);
 
     if(!song){
@@ -57,7 +57,7 @@ function play(guild, song, queue, ytdl){
         return;
     }
 
-    const dispatcher = serverQueue.connection.playStream(ydtl(song.url))
+    const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
     .on('end', ()=>{
         message.channel.send(`${song.title} has ended`);
         serverQueue.songs.shift();
