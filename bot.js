@@ -15,25 +15,6 @@ const CH = new CommandHandler({
 
 global.servers = {};
 
-bot.commands = new Discord.Collection();
-
-fs.readdir("./commands/", (err, files) =>{
-
-    if(err) console.log(err.stack);
-
-    let jsfile = files.filter(f => f.split(".").pop() === "js");
-    if(jsfile.length <= 0){
-        console.log("No commands");
-        return;
-    };
-
-    jsfile.forEach((f, i) =>{
-        let props = require(`./commands/${f}`);
-        console.log(`${f} loaded`);
-        bot.commands.set(props.help.name, props);
-    });
-});
-
 bot.on("ready", async => {
     console.log("Hentai Bot is online!!")
     bot.user.setActivity("hentai", {type: "WATCHING"});
