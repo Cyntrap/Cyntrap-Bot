@@ -56,7 +56,7 @@ module.exports = class play {
         try {
             var connection = voiceChannel.join();
             queueConstruct.connection = connection;
-            play(message.guild, queueConstruct.songs[0], queue)
+            play(message.guild, queueConstruct.songs[0])
         }catch(e){
             console.log(e.stack);
             queue.delete(message.guild.id);
