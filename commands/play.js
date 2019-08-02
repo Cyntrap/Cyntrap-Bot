@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
     }else {
         serverQueue.songs.push(song);  
         console.log(serverQueue.songs);
-        return message.channel.send(`${song.title} has been added to the queue`);
+        return message.channel.send(`🎵 ${song.title} has been added to the queue 🎵`);
     }
 
 function play(guild, song, queue){
@@ -64,6 +64,16 @@ function play(guild, song, queue){
     message.channel.send(`${song.title} has started!`);
     
 
+}
+
+function skip(serverQueue){
+
+    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
+    if(!serverQueue){
+        message.channel.send("No songs for me to skip >_<");
+    }
+    serverQueue.connection.dispatcher.end();
+    return undefined;
 }
 
 }
