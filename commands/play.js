@@ -56,7 +56,7 @@ module.exports = class play {
 			try {
 				var connection = await voiceChannel.join();
 				queueConstruct.connection = connection;
-				play(message.guild, queueConstruct.songs[0], queue);
+				play(message.guild, queueConstruct.songs[0]);
 			} catch (error) {
 				console.error(`I could not join the voice channel: ${error}`);
 				queue.delete(message.guild.id);
@@ -68,15 +68,16 @@ module.exports = class play {
 			return message.channel.send(`**${song.title}** has been added to the queue!`);
 		}
 
-		function play(guild, song, queue) {
-				
+		function play(guild, song) {
+			const serverQueue = queue.get(guild.id);	
+
 			if (!song) {
 				serverQueue.voiceChannel.leave();
 				queue.delete(guild.id);
 				return;
 			}
 
-			const serverQueue = queue.get(guild.id);
+			
 		
 			const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
 				.on('end', reason => {
