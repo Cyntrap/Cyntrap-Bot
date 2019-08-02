@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
         return message.channel.send(`${song.title} has been added to the queue`);
     }
 
-function play(guild, songs, queue){
+function play(guild, song, queue){
     const ytdl = require("ytdl-core");
     const serverQueue = queue.get(guild.id);
 
@@ -55,7 +55,7 @@ function play(guild, songs, queue){
         return;
     }
 
-    const dispatcher = serverQueue.connection.playStream(ytdl(songs[0].url))
+    const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
     .on('end', ()=>{
         message.channel.send(`${song.title} has ended`);
         serverQueue.songs.shift();
