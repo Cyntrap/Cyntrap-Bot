@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
     serverQueue.songs = []
     serverQueue.connection.dispatcher.end();
     voiceChannel.leave();
-    message.channel.send(`🎵 💀 🎵`);
+    message.channel.send(`🎵 No more music 😢 🎵`);
     return undefined;
 }
 
