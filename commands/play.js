@@ -12,7 +12,6 @@ module.exports = class play {
     }
 
     async (bot, message, args, serverQueue, queue, searchString){
-        await message.delete();
         
     const searchString = args.slice(1).join(' ');
 	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
