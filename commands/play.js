@@ -59,7 +59,6 @@ function play(guild, song, queue){
         serverQueue.songs.shift();
         play(guild, serverQueue.songs[0], queue);
     }).on('error', error => console.log(error.stack));
-    dispatcher.setVolume("0.5");
     message.channel.send(`🎵 **Now Playing** --> ${song.title} 🎵`);
 }
 
@@ -111,9 +110,12 @@ function resume(serverQueue){
     message.channel.send("Music is already playing >_<");
 }
 
+
+
 module.exports.skip = skip;
 module.exports.stop = stop;
 module.exports.pause = pause;
+module.exports.resume = resume;
 
 
 
