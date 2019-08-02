@@ -16,12 +16,13 @@ module.exports.run = async (bot, message, args, serverQueue, queue, url) => {
     
     if(!args[0]) return message.channel.send("Please provide a link -_-");
 
+    const songInfo = await ytdl.getInfo(args[0]);
 
     try{
-        var video = await youtube.getVideo(url);
+        var video = await youtube.getVideo(songInfo.url);
     }catch(e){
         try{
-            var videos = youtube.searchVideos(url, 1);
+            var videos = youtube.searchVideos(songInfo.url, 1);
             var video = await youtube.getVideoByID(videos[0].id);
         }catch(e){
             console.log(e.stack);
@@ -29,7 +30,6 @@ module.exports.run = async (bot, message, args, serverQueue, queue, url) => {
         }
     }
     console.log(video);
-    const songInfo = await ytdl.getInfo(args[0]);
     const song = {
         id: video.id,
         title: video.title,
