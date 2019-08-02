@@ -65,7 +65,7 @@ function play(guild, song, queue){
 
 }
 
-function skip(serverQueue){
+function skip(serverQueue, message){
 
     if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
     if(!serverQueue){
@@ -84,7 +84,7 @@ function stop(serverQueue, message, queue){
     if(!serverQueue){
         message.channel.send("Nothing is playing >_<");
     }
-    
+
     serverQueue.songs = []
     serverQueue.connection.dispatcher.end();
     message.channel.send(`🎵 💀 🎵`);
