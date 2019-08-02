@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
         try {
             var connection = await voiceChannel.join();
             queueConstruct.connection = connection;
-            play(message.guild, queueConstruct.songs, queue)
+            play(message.guild, queueConstruct.songs[0], queue)
             message.channel.send(`${song.title} has started!`);
         }catch(e){
             console.log(e.stack);
