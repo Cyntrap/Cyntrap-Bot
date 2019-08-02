@@ -8,13 +8,9 @@ module.exports = class skip {
     }
 
     async run (bot, message, args, serverQueue){
-        if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
-        if(!serverQueue){
-            message.channel.send("No songs for me to skip >_<");
-            
-        }
-        serverQueue.connection.dispatcher.end();
-        message.channel.send(`🎵 **Skipped Song** 🎵`);
-        return undefined;
+		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
+		if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
+		serverQueue.connection.dispatcher.end('Skip command has been used!');
+		return undefined;
     }
 }

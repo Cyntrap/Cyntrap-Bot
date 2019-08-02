@@ -67,27 +67,30 @@ module.exports = class play {
 			console.log(serverQueue.songs);
 			return message.channel.send(`**${song.title}** has been added to the queue!`);
 		}
-    function play(guild, song, queue) {
-        const serverQueue = queue.get(guild.id);
-    
-        if (!song) {
-            serverQueue.voiceChannel.leave();
-            queue.delete(guild.id);
-            return;
-        }
-    
-        const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-            .on('end', reason => {
-                if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
-                else console.log(reason);
-                serverQueue.songs.shift();
-                play(guild, serverQueue.songs[0]);
-            })
-            .on('error', error => console.error(error));
-        dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-    
-        serverQueue.textChannel.send(`Start playing: **${song.title}**`);
-    }
 
-    }
+		function play(guild, song, queue) {
+				
+			if (!song) {
+				serverQueue.voiceChannel.leave();
+				queue.delete(guild.id);
+				return;
+			}
+
+			const serverQueue = queue.get(guild.id);
+		
+			const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+				.on('end', reason => {
+					if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
+					else console.log(reason);
+					serverQueue.songs.shift();
+					play(guild, serverQueue.songs[0]);
+				})
+				.on('error', error => console.error(error));
+			dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+		
+			serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+		}
+	}
+	
+	
 }
