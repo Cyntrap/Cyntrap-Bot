@@ -89,4 +89,5 @@ module.exports = class play {
         serverQueue.textChannel.send(`Start playing: **${song.title}**`);
     }
 
+    }
 }
