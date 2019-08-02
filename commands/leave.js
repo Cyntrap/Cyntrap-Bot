@@ -7,6 +7,8 @@ module.exports.run = async (bot, message, args) => {
     if(!voiceChannel) return message.channel.send("Join a voice channel!");
 
     voiceChannel.leave();
+    message.channel.send("Successfuly left the voice channel");
+
     
 }
 
