@@ -11,7 +11,7 @@ module.exports = class play {
         this.usage = "_test"
     }
 
-    async run (bot, message, args, serverQueue, queue, searchString){
+    async run (bot, message, args, serverQueue, queue){
 
     const searchString = args.slice(1).join(' ');
 	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
