@@ -90,12 +90,8 @@ function stop(songs){
     return undefined;
 }
 
-
-
 module.exports.skip = skip;
 module.exports.stop = stop;
-
-}
 
 
 
