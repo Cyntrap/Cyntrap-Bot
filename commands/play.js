@@ -79,8 +79,11 @@ function skip(serverQueue){
 function stop(serverQueue){
     const voiceChannel = message.member.voiceChannel;
 
-    if(!voiceChannel) return message.channel.send("Join a voice channel!");
+    if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
     voiceChannel.leave();
+    if(!serverQueue){
+        message.channel.send("Nothing is playing >_<");
+    }
     serverQueue.songs = [];
     serverQueue.connection.dispatcher.end();
     message.channel.send(`🎵 💀 🎵`);
