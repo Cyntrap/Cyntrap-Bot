@@ -32,22 +32,22 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
         try {
             var connection = await voiceChannel.join();
             queueConstruct.connection = connection;
-            play(message.guild, queueConstruct.songs[0], queue)
+            play(message.guild, queueConstruct.songs[0], queue, ydtl)
         }catch(e){
             console.log(e.stack);
             queue.delete(message.guild.id);
             return message.channel.send("Couldn't join voice channel!");
         }
     }else {
-        serverQueue.songs.push(song);
+        serverQueue.songs.push(song);  
+        console.log(serverQueue.songs);
         return message.channel.send(`${song.title} has been added to the queue`);
     }
 
     return undefined
 
-}
-
-function play(guild, song, queue){
+    
+function play(guild, song, queue, ytdl){
     const serverQueue = queue.get(guild.id);
 
     if(!song){
@@ -55,8 +55,6 @@ function play(guild, song, queue){
         queue.delete(guild.id);
         return;
     }
-
-    console.log(serverQueue.songs);
 
     const dispatcher = serverQueue.connection.playStream(ydtl(song.url))
     .on('end', ()=>{
@@ -67,6 +65,9 @@ function play(guild, song, queue){
     dispatcher.setVolume("0.5");
 
 }
+
+}
+
 
 module.exports.help = {
     name: "play"
