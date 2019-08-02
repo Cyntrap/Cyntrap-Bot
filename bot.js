@@ -1,11 +1,12 @@
 const Discord = require("discord.js");
+const fs = require("fs");
 const botsettings = require("./botsettings.json")
 const bot = new Discord.Client();
 const prefix = botsettings.prefix;
 
 const queue = new Map();
 
-const fs = require("fs");
+
 
 global.servers = {};
 
