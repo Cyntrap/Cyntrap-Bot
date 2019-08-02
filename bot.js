@@ -45,11 +45,12 @@ bot.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
+    const url = args.replace(/<(.+)>/g, `$1`)
 
     const serverQueue = queue.get(message.guild.id);
 
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
-    if(commandfile) commandfile.run(bot, message, args, serverQueue, queue);
+    if(commandfile) commandfile.run(bot, message, args, serverQueue, queue, url);
 
     return;
 })

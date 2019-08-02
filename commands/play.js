@@ -1,8 +1,11 @@
 const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
+const YouTube = require("simple-youtube-api");
+
+const youtube = new YouTube(process.env.API_KEY);
 
 
-module.exports.run = async (bot, message, args, serverQueue, queue) => {
+module.exports.run = async (bot, message, args, serverQueue, queue, url) => {
 
 
     const voiceChannel = message.member.voiceChannel;
@@ -13,10 +16,24 @@ module.exports.run = async (bot, message, args, serverQueue, queue) => {
     
     if(!args[0]) return message.channel.send("Please provide a link -_-");
 
+
+    try{
+        var video = await youtube.getVideo(url);
+    }catch(e){
+        try{
+            var videos = youtube.searchVideos(url, 1);
+            var video = await youtube.getVideoByID(videos[0].id);
+        }catch(e){
+            console.log(e.stack);
+            return message.channel.send("I couldn't find a song");
+        }
+    }
     const songInfo = await ytdl.getInfo(args[0]);
     const song = {
-        title: songInfo.title,
-        url: songInfo.video_url
+        id: video.id,
+        title: video.title,
+        duration: video.duration,
+        url: `https://www.youtube.com/watch?v=${video.id}`
     }
     if(!serverQueue) {
         const queueConstruct = {
