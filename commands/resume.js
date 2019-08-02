@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 const play = require("./play.js");
 
-const Discord = require("discord.js");
-
 module.exports = class resume {
     constructor(){
         this.name = "resume"
