@@ -14,7 +14,8 @@ module.exports = class volume {
         if(parseInt(args[1]) > 1000){
             return message.channel.send("The volume cannot be set to more than a 1000");
         }
-        serverQueue.connection.dispatcher.setVolume(args[1]);
+        serverQueue.volume = args[1];
+        serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
         return undefined;
     }
 }

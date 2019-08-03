@@ -129,7 +129,7 @@ module.exports = class play {
 					play(guild, serverQueue.songs[0]);
 				})
 				.on('error', error => console.error(error));
-			dispatcher.setVolume(serverQueue.volume);
+			dispatcher.setVolumeLogarithmic(serverQueue.volume);
 		
 			serverQueue.textChannel.send(`Start playing: **${song.title}**`);
 		}
