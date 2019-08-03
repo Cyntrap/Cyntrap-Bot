@@ -49,15 +49,15 @@ module.exports = class play {
 					.setFooter("Cute Bot", bot.user.displayAvatarURL);
 					message.channel.send(search_embed);
 					// eslint-disable-next-line max-depth
-					try{
-						var respone = await message.channel.awaitMessages(message2 => message2.content > 0 && message.content < 11, {
+					try {
+						var response = await message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
 							maxMatches: 1,
 							time: 10000,
-							errors: ["time"]
+							errors: ['time']
 						});
-					}catch(err){
-						console.log(err.stack);
-						return message.channel.send("No or invalid value entered. Cancelling video selection!")
+					} catch (err) {
+						console.error(err);
+						return message.channel.send('No or invalid value entered, cancelling video selection.');
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
