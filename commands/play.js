@@ -47,6 +47,7 @@ module.exports = class play {
 					
 				Select the song you want by typing its number ^_^`)
 					.setFooter("Cute Bot", bot.user.displayAvatarURL);
+					message.channel.send(search_embed);
 					// eslint-disable-next-line max-depth
 					try{
 						var respone = await message.channel.awaitMessages(message2 => message2.content > 0 && message.content < 11, {
