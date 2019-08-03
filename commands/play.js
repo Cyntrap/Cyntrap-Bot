@@ -38,8 +38,28 @@ module.exports = class play {
 				var video = await youtube.getVideo(url);
 			} catch (error) {
 				try {
-					var videos = await youtube.searchVideos(searchString, 1);
-					var video = await youtube.getVideoByID(videos[0].id);
+					var videos = await youtube.searchVideos(searchString, 10);
+					let index = 0;
+					let search_embed = new Discord.RichEmbed()
+					.setTitle("🎵 ***Search Results*** 🎵")
+					.setDescription(`
+				${videos.map(video2 => `**${++index}.**  ${video2.title}`).join('\n')}
+					
+				Select the song you want by typing its number ^_^`)
+					.setFooter("Cute Bot", bot.user.displayAvatarURL);
+					// eslint-disable-next-line max-depth
+					try{
+						var respone = await message.channel.awaitMessages(message2 => message2.content > 0 && message.content < 11, {
+							maxMatches: 1,
+							time: 10000,
+							errors: ["time"]
+						});
+					}catch(err){
+						console.log(err.stack);
+						return message.channel.send("No or invalid value entered. Cancelling video selection!")
+					}
+					const videoIndex = parseInt(response.first().content);
+					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
 					return message.channel.send('I could not obtain any search results.');
