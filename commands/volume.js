@@ -11,11 +11,13 @@ module.exports = class volume {
         if(!message.member.voiceChannel) return message.channel.send("You are not in a voice channel. Dummy dum");
         if(!serverQueue) return message.channel.send("There is no queue");
         message.channel.send(`Current volume: ${serverQueue.volume}`);
-        if(parseInt(args[1]) > 100){
-            return message.channel.send("The volume cannot be set to more than a 1000");
-        }
         serverQueue.volume = args[1];
-        serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
+        if(serverQueue.volume > 10){
+            return message.channel.send("Volume can't be higher than 10")
+        }else{
+            serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
+        }
+        
         return undefined;
     }
 }
