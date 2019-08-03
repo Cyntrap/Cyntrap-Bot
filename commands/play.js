@@ -30,7 +30,7 @@ module.exports = class play {
 
 			for(const video of Object.values(videos)){
 				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
-				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
+				await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
 			return message.channel.send(`Playlist: **${playlist.title}** has been added to the queue`);
 		}else{
