@@ -17,7 +17,7 @@ module.exports = class userinfo {
         .addField("Full Username", `${message.author.username}#${message.author.discriminator}`)
         .addField("ID", `${message.author.id}`)
         .addField("Created at", `${message.author.createdAt}`)
-        .setFooter("Cute Bot", bot.user.displayAvatarURL);
+        .setFooter("Cute Bot ==> version (1.11.7)", bot.user.displayAvatarURL);
         message.channel.send(user_embed);
     }
 }
