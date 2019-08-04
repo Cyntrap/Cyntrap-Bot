@@ -70,7 +70,7 @@ module.exports = class play {
 		}
 
 
-		async function handleVideo(video, message, voiceChannel, playlits = false){
+		async function handleVideo(video, message, voiceChannel, playlist = false){
 
 			const serverQueue = queue.get(message.guild.id);
 			const song = {
