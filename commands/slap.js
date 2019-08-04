@@ -9,7 +9,6 @@ module.exports = class slap {
 
     async run (bot, message, args){
 
-
         const gifs = [
             "https://media1.tenor.com/images/1cf84bf514d2abd2810588caf7d9fd08/tenor.gif?itemid=7679403",
             "https://media1.tenor.com/images/4eed54377433c396ce2d9ad9ee5d22ef/tenor.gif?itemid=11234788",
@@ -25,10 +24,10 @@ module.exports = class slap {
 
         let index = Math.floor((Math.random() * gifs.length));
         let victim = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
-        let user = message.author;
+        let user = message.member;
         let slap_embed = new Discord.RichEmbed()
         .setColor("PURPLE")
-        .setTitle(`<@${user.id}> hit <@${victim.user.id}>`)
+        .setTitle(`${user} hit ${victim}`)
         .setImage(gifs[index]);
         message.channel.send(slap_embed);
     }
