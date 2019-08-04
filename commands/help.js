@@ -44,7 +44,7 @@ module.exports = class help {
         }
 
         if(args[1].toLowerCase() == "fun"){
-          let = fun_embed = new Discord.RichEmbed()
+          let fun_embed = new Discord.RichEmbed()
           .setTitle("**Fun**")
           .addField("really empty for now ", "spam my master for the release of these commands")
           .setFooter("Cute Bot", bot.user.displayAvatarURL);
@@ -52,7 +52,7 @@ module.exports = class help {
         }
 
         if(args[1].toLowerCase() == "general"){
-          let = general_embed = new Discord.RichEmbed()
+          let general_embed = new Discord.RichEmbed()
           .setTitle("**General**")
           .addField("1. _say", "it does exactly what you think it does")
           .setFooter("Cute Bot", bot.user.displayAvatarURL);
