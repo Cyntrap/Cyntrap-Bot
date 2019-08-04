@@ -18,7 +18,7 @@ module.exports = class serverinfo {
         .addField("Server Members", `${message.guild.memberCount}`)
         .addField("Server Join", `You joined ${message.member.joinedAt}`)
         .addField("Server Birth", `This server was created ${message.guild.createdAt}`)
-        .setFooter("Cute Bot ==> version (1.11.7)", bot.user.displayAvatarURL);
+        .setFooter("Cute Bot", bot.user.displayAvatarURL);
         message.channel.send(server_embed);
     }
 }

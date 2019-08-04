@@ -20,7 +20,7 @@ module.exports = class botinfo{
         .addField("Creator", "Cyntrap#8382")
         .addField("Created at", bot.createdAt)
         .addField("Invite Link:", invite)
-        .setFooter("Cute Bot ==> version (1.11.7)", bot.user.displayAvatarURL);
+        .setFooter("Cute Bot", bot.user.displayAvatarURL);
         message.channel.send(bot_embed)
     }
 

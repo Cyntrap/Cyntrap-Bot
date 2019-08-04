@@ -12,11 +12,11 @@ module.exports = class help {
             let help_embed = new Discord.RichEmbed()
             .setTitle("**Categories**")
             .setDescription("This are the catergories for commands(use _help [category])")
-            .addField("**Info**", "botinfo(bi), help(h), serverinfo(si), userinfo(ui)")
-            .addField("**Moderation**", "clear(c)")
-            .addField("Fun", "wow such empty")
-            .addField("General", "say(s)")
-            .addField("Music", "np(nowplaying), pause(pa), play(p), queue(q), resume(r), skip(s), stop(end), volume(v)")
+            .addField("**Info**", "`botinfo` `help` `serverinfo` `userinfo`")
+            .addField("**Moderation**", "clear")
+            .addField("Fun", "`wow such empty`")
+            .addField("General", "`say`")
+            .addField("Music", "`np(nowplaying)`` `pause` `play` `queue` `resume` `skip` `stop` `volume`")
             .setFooter("Cute Bot ==> version (1.11.7)", bot.user.displayAvatarURL);
             message.channel.send(help_embed);
         }
@@ -24,13 +24,24 @@ module.exports = class help {
         if(args[1].toLowerCase() == "info"){
             let info_embed = new Discord.RichEmbed()
             .setTitle("**Info**")
-            .addField("botinfo(bi)", "shows info for the bot!")
-            .addField("help(h)", "how to use command.com")
-            .addField("serverinfo(si)", "guess what it's the info for the server ^^")
-            .addField("userinfo(ui)", "yet again some info for the user")
-            .setFooter("Cute Bot ==> version (1.11.7)", bot.user.displayAvatarURL);
+            .addField("1. _botinfo", "shows info for the bot!")
+            .addField("2. _help", "how to use commands.com")
+            .addField("3. _serverinfo", "guess what it's the info for the server ^^")
+            .addField("4. _userinfo", "yet again some info for the user")
+            .setFooter("Cute Bot", bot.user.displayAvatarURL);
             message.channel.send(info_embed);
-            }
+          }
+
+        if(args[1].toLowerCase() == "moderation"){
+          let mod_embed = new Discord.RichEmbed()
+          .setTitle("**Info**")
+          .addField("1. _clear", "clears the amount of messages you type")
+          .addField("2. _mute", "not usable")
+          .addField("3. _kick", "not usable")
+          .addField("4. _ban", "not usable")
+          .setFooter("Cute Bot", bot.user.displayAvatarURL);
+          message.channel.send(mod_embed)
+        }
 
     }
 
