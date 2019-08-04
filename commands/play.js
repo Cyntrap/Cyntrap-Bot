@@ -72,6 +72,7 @@ module.exports = class play {
 
 		async function handleVideo(video, message, voiceChannel, playlist = false){
 
+
 			const serverQueue = queue.get(message.guild.id);
 			const song = {
 				id: video.id,
@@ -102,7 +103,6 @@ module.exports = class play {
 				}
 			} else {
 				serverQueue.songs.push(song);
-				console.log(serverQueue.songs);
 				if(playlist){
 					return undefined;
 				}else{
