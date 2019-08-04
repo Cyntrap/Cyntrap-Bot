@@ -28,6 +28,7 @@ module.exports = class slap {
         let user = message.author;
         let slap_embed = new Discord.RichEmbed()
         .setColor("PURPLE")
+        .setTitle(`<@${user.tag}> hit <@${victim.user.tag}>`)
         .setImage(gifs[index]);
         message.channel.send(`@${user.tag} hit @${victim.user.tag}`);
         message.channel.send(slap_embed);
