@@ -10,7 +10,8 @@ module.exports = class kick {
   async run(bot, message, args){
 
     let user = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
-    let reason = args.join(" ").slice(22);
+    let reason = args.join(" ").slice(2);
+    if(message.member.hasPermission("KICK_MEMBERS") || message.member.id != 204679946734403584) return ("No permission pal ")
     if(!user) return message.channel.send("Please provide a valid user!");
     if(!reason) return message.channel.send("Please provide a reason");
     if(user.id == 204679946734403584) return message.channel.send("Can't kick my master");
