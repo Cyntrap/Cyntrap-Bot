@@ -9,10 +9,11 @@ module.exports = class stop {
 
 
     async run (bot, message, args, serverQueue, queue){
-		if (!message.member.voiceChannel) return message.channel.send('You are not in a voice channel!');
-		if (!serverQueue) return message.channel.send('There is nothing playing that I could stop for you.');
+		if (!message.member.voiceChannel) return message.channel.send('Not in a voice channel ヾ(`ヘ´)ﾉﾞ');
+		if (!serverQueue) return message.channel.send('Nothing is playing ヾ(`ヘ´)ﾉﾞ');
 		serverQueue.songs = [];
-		serverQueue.connection.dispatcher.end();
+    serverQueue.connection.dispatcher.end();
+    message.channel.send("🎵 Stopping music 🎵");
 		return undefined;
     }
 }

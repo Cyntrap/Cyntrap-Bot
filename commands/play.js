@@ -133,7 +133,10 @@ module.exports = class play {
 		
 			serverQueue.textChannel.send(`🎵 **${song.title}** is now playing 🎵`);
 			serverQueue.textChannel.send({
-				files: ['https://cdn.discordapp.com/attachments/473585876098613251/607569910843047986/bobbing-head.gif']
+				files: [{
+				  attachment: '../gifs/music/bobbing-head.gif',
+				  name: 'bobbing-head.gif'
+				}]
 			  })
 				.then(console.log)
 				.catch(console.error);
