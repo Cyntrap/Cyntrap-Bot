@@ -12,7 +12,7 @@ module.exports = class slap {
 
         const gifs = [
             "https://media1.tenor.com/images/1cf84bf514d2abd2810588caf7d9fd08/tenor.gif?itemid=7679403",
-            "",
+            "https://media1.tenor.com/images/4eed54377433c396ce2d9ad9ee5d22ef/tenor.gif?itemid=11234788",
             "",
             "",
             "",
@@ -28,7 +28,7 @@ module.exports = class slap {
         let user = message.author;
         let slap_embed = new Discord.RichEmbed()
         .setColor("PURPLE")
-        .setTitle(`${user.tag} hit ${victim.user.tag}`)
+        .setTitle(`@${user.tag} hit @${victim.user.tag}`)
         .setImage("https://media1.tenor.com/images/1cf84bf514d2abd2810588caf7d9fd08/tenor.gif?itemid=7679403")
         message.channel.send(slap_embed);
     }
