@@ -14,13 +14,13 @@ module.exports = class play {
 
     async run (bot, message, args, serverQueue, queue, searchString,url){
         const voiceChannel = message.member.voiceChannel;
-		if (!voiceChannel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
+		if (!voiceChannel) return message.channel.send("You must be in a voice channel to play music. Dummy dum");
 		const permissions = voiceChannel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT')) {
-			return message.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
+			return message.channel.send("I can't connect to that voice channel (＞﹏＜)");
 		}
 		if (!permissions.has('SPEAK')) {
-			return message.channel.send('I cannot speak in this voice channel, make sure I have the proper permissions!');
+			return message.channel.send("I don't have permission to speak (＞﹏＜)");
 		}
 
 
@@ -32,7 +32,7 @@ module.exports = class play {
 				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, message, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
-			return message.channel.send(`Playlist: **${playlist.title}** has been added to the queue`);
+			return message.channel.send(`🎵 **${playlist.title}** has been added 🎵`);
 		}else{
 			try {
 				var video = await youtube.getVideo(url);
@@ -57,13 +57,13 @@ module.exports = class play {
 						});
 					} catch (err) {
 						console.error(err);
-						return message.channel.send('No or invalid value entered, cancelling video selection.');
+						return message.channel.send('No or invalid value (`ー´)');
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
-					return message.channel.send('I could not obtain any search results.');
+					return message.channel.send("I couldn't find any results (>﹏<)");
 				}
 			}
 			return handleVideo(video, message, voiceChannel);
@@ -97,16 +97,16 @@ module.exports = class play {
 					queueConstruct.connection = connection;
 					play(message.guild, queueConstruct.songs[0]);
 				} catch (error) {
-					console.error(`I could not join the voice channel: ${error}`);
+					console.error(`I couldn't join the voice channel: ${error}`);
 					queue.delete(message.guild.id);
-					return message.channel.send(`I could not join the voice channel: ${error}`);
+					return message.channel.send(`I couldn't join the voice channel: ${error}`);
 				}
 			} else {
 				serverQueue.songs.push(song);
 				if(playlist){
 					return undefined;
 				}else{
-					return message.channel.send(`**${song.title}** has been added to the queue!`);
+					return message.channel.send(`🎵 **${song.title}** has been added 🎵`);
 				}
 			}
 			return undefined;
@@ -131,7 +131,12 @@ module.exports = class play {
 				.on('error', error => console.error(error));
 			dispatcher.setVolumeLogarithmic(serverQueue.volume);
 		
-			serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+			serverQueue.textChannel.send(`🎵 **${song.title}** is now playing 🎵`);
+			serverQueue.textChannel.send({
+				files: ['https://cdn.discordapp.com/attachments/473585876098613251/607569910843047986/bobbing-head.gif']
+			  })
+				.then(console.log)
+				.catch(console.error);
 		}
 	}
 	
