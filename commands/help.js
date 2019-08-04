@@ -21,7 +21,6 @@ module.exports = class help {
             message.channel.send(help_embed);
         }
 
-n
     }
 
 }
