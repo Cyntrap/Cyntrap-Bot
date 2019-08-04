@@ -49,7 +49,7 @@ module.exports = class help {
           let fun_embed = new Discord.RichEmbed()
           .setColor("PURPLE")
           .setTitle("**Fun**")
-          .addField("1. hit ", "hits a person you mention")
+          .addField("1. _hit ", "hits a person you mention")
           .setFooter("Cute Bot", bot.user.displayAvatarURL);
           message.channel.send(fun_embed)
         }

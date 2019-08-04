@@ -20,16 +20,18 @@ module.exports = class slap {
             "https://thumbs.gfycat.com/LegalExhaustedEuropeanpolecat-size_restricted.gif",
             "https://media1.tenor.com/images/3fd96f4dcba48de453f2ab3acd657b53/tenor.gif?itemid=14358509",
             "https://media1.tenor.com/images/31686440e805309d34e94219e4bedac1/tenor.gif?itemid=4874411",
-            "https://cdn.weeb.sh/images/ryn_Zg5JG.gif"
+            "https://cdn.weeb.sh/images/ryn_Zg5JG.gif",
+            "https://media1.tenor.com/images/4a6b15b8d111255c77da57c735c79b44/tenor.gif?itemid=10937039",
+            ""
         ]
 
         let index = Math.floor((Math.random() * gifs.length));
         let victim = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[1]));
         let user = message.author;
-        let slap_embed = new Discord.RichEmbed()
+        let embed = new Discord.RichEmbed()
         .setColor("PURPLE")
         .setImage(gifs[index]);
         message.channel.send(`**${user}** hit **${victim}**`)
-        message.channel.send(slap_embed);
+        message.channel.send(embed);
     }
 }

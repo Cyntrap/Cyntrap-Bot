@@ -6,7 +6,6 @@ const prefix = botsettings.prefix;
 
 const queue = new Map();
 
-
 const { CommandHandler } = require("djs-commands")
 const CH = new CommandHandler({
     folder: __dirname + '/commands/',
@@ -38,7 +37,7 @@ bot.on("message", async message => {
     const searchString = args.slice(1).join(' ');
 	const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
     try{
-        cmd.run(bot,message,args,serverQueue,queue,searchString, url)
+        cmd.run(bot,message,args,serverQueue,queue,searchString, url, osuApi)
     }catch(e){
         console.log(e)
     }
