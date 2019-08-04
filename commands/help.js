@@ -39,9 +39,8 @@ module.exports = class help {
           .setColor("PURPLE")
           .setTitle("**Info**")
           .addField("1. _clear", "clears the amount of messages you type")
-          .addField("2. _mute", "not usable")
-          .addField("3. _kick", "not usable")
-          .addField("4. _ban", "not usable")
+          .addField("2. _kick", "kicks a user from the server")
+          .addField("3. _ban", "not usable")
           .setFooter("Cute Bot", bot.user.displayAvatarURL);
           message.channel.send(mod_embed)
         }
@@ -50,7 +49,7 @@ module.exports = class help {
           let fun_embed = new Discord.RichEmbed()
           .setColor("PURPLE")
           .setTitle("**Fun**")
-          .addField("really empty for now ", "spam my master for the release of these commands")
+          .addField("1. hit ", "hits a person you mention")
           .setFooter("Cute Bot", bot.user.displayAvatarURL);
           message.channel.send(fun_embed)
         }
