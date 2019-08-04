@@ -9,10 +9,11 @@ module.exports = class queue {
 
     async run (bot, message, args, serverQueue, queue){
         if(!serverQueue) return message.channel.send(" No Queue >_< ")
+        let index = 0;
         let queue_embed = new Discord.RichEmbed()
         .setTitle("🎵 ***Song Queue*** 🎵")
         .setDescription(`
-    ${serverQueue.songs.map(song => `*${song.title}`).join('\n')}
+    ${serverQueue.songs.map(song => ` **${++index}.** ${song.title}`).join('\n')}
         `)
         .setFooter("Cute Bot", bot.user.displayAvatarURL);
     
