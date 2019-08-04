@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = class np {
     constructor(){
         this.name = "np"
-        this.alias = ["np"]
+        this.alias = ["nowplaying"]
         this.usage = "_np"
     }
 

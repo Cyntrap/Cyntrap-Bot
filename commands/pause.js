@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = class pause {
     constructor(){
         this.name = "pause"
-        this.alias = ["p"]
+        this.alias = ["pa"]
         this.usage = "_pause"
     }
 
