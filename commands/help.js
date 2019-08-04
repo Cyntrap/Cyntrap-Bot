@@ -8,7 +8,7 @@ module.exports = class help {
     }
 
     async run(bot, message, args){
-        if(args[1]){
+        if(!args[1]){
             let help_embed = new Discord.RichEmbed()
             .setTitle("**Categories**")
             .setDescription("This are the catergories for commands(use _help [category])")
