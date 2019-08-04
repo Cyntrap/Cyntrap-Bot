@@ -21,7 +21,7 @@ module.exports = class kick {
     .setColor("PURPLE")
     .setTitle("**Kick**")
     .addField("Kicked:", user)
-    .addField("Kicked by:" message.author.username)
+    .addField("Kicked by:", message.author.username)
     .addField("Reason:", reason)
     .addField("Time:", message.createdAt)
     .setFooter("Cute Bot", bot.user.displayAvatarURL);
