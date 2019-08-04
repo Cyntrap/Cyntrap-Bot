@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
 
+const gif = require("../gifs/music/bobbing-head.gif")
+
 const YouTube = require('simple-youtube-api');
 
 const youtube = new YouTube(process.env.API_KEY);
@@ -134,7 +136,7 @@ module.exports = class play {
 			serverQueue.textChannel.send(`🎵 **${song.title}** is now playing 🎵`);
 			serverQueue.textChannel.send({
 				files: [{
-				  attachment: '../gifs/music/bobbing-head.gif',
+				  attachment: gif,
 				  name: 'bobbing-head.gif'
 				}]
 			  })
