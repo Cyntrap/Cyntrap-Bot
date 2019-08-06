@@ -20,9 +20,8 @@ module.exports = class help {
             .addField("Music", "`np(nowplaying)` `pause` `play` `queue` `resume` `skip` `stop` `volume`")
             .setFooter("Cute Bot ==> version (1.11.7)", bot.user.displayAvatarURL);
             message.channel.send(help_embed);
-        }
-
-        if(args[1].toLowerCase() == "info"){
+        }else {
+          if(args[1].toLowerCase() == "info"){
             let info_embed = new Discord.RichEmbed()
             .setColor("PURPLE")
             .setTitle("**Info**")
@@ -78,6 +77,8 @@ module.exports = class help {
           .setFooter("Cute Bot", bot.user.displayAvatarURL);
           message.channel.send(music_embed);
         }
+        }
+
 
     }
 
