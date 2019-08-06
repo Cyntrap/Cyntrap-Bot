@@ -14,8 +14,8 @@ module.exports = class help {
             .setTitle("**Categories**")
             .setDescription("This are the catergories for commands(use _help [category])")
             .addField("**Info**", "`botinfo` `help` `serverinfo` `userinfo`")
-            .addField("**Moderation**", "clear")
-            .addField("Fun", "`wow such empty`")
+            .addField("**Moderation**", "`clear` `kick`")
+            .addField("Fun", "`slap`")
             .addField("General", "`say`")
             .addField("Music", "`np(nowplaying)` `pause` `play` `queue` `resume` `skip` `stop` `volume`")
             .setFooter("Cute Bot ==> version (1.11.7)", bot.user.displayAvatarURL);
@@ -49,7 +49,7 @@ module.exports = class help {
           let fun_embed = new Discord.RichEmbed()
           .setColor("PURPLE")
           .setTitle("**Fun**")
-          .addField("1. _hit ", "hits a person you mention")
+          .addField("1. _slap ", "hits a person you mention")
           .setFooter("Cute Bot", bot.user.displayAvatarURL);
           message.channel.send(fun_embed)
         }
