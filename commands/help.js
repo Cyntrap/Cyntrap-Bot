@@ -18,7 +18,7 @@ module.exports = class help {
             .addField("Fun", "`slap`")
             .addField("General", "`say`")
             .addField("Music", "`np(nowplaying)` `pause` `play` `queue` `resume` `skip` `stop` `volume`")
-            .setFooter("Cute Bot ==> version (1.11.7)", bot.user.displayAvatarURL);
+            .setFooter("Cute Bot", bot.user.displayAvatarURL);
             message.channel.send(help_embed);
         }else {
           if(args[1].toLowerCase() == "info"){
