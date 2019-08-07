@@ -22,7 +22,6 @@ module.exports = class slap {
             "https://media1.tenor.com/images/31686440e805309d34e94219e4bedac1/tenor.gif?itemid=4874411",
             "https://cdn.weeb.sh/images/ryn_Zg5JG.gif",
             "https://media1.tenor.com/images/4a6b15b8d111255c77da57c735c79b44/tenor.gif?itemid=10937039",
-            ""
         ]
 
         let index = Math.floor((Math.random() * gifs.length));
