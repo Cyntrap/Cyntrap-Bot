@@ -52,7 +52,7 @@ module.exports = class play {
 					try {
 						var response = await message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
 							maxMatches: 1,
-							time: 10000,
+							time: 20000,
 							errors: ['time']
 						});
 					} catch (err) {
